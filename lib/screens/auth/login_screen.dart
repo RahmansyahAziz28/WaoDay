@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../data/dummy_data.dart';
 import '../../services/auth_service.dart';
 import '../../theme.dart';
 import '../../widgets/widgets.dart';
+import '../admin/admin_home.dart';
 import '../guru/guru_home.dart';
-import 'forgot_password_screen.dart';
-import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -64,7 +64,14 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
 
-      Navigator.of(context).pushReplacementNamed(GuruHome.routeName);
+      final roleStr = response.data!.user.role.toLowerCase();
+      if (roleStr == 'admin' ||
+          roleStr == 'administrator' ||
+          AppData.instance.currentRole == UserRole.admin) {
+        Navigator.of(context).pushReplacementNamed(AdminHome.routeName);
+      } else {
+        Navigator.of(context).pushReplacementNamed(GuruHome.routeName);
+      }
     } else {
       setState(() {
         _errorMessage = response.message;
@@ -114,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 6),
               const Text(
-                'Masuk untuk melanjutkan ke akun guru Anda',
+                'Masuk untuk mengakses sistem akademik sekolah',
                 style: TextStyle(fontSize: 14, color: AppColors.textSecondary),
               ),
               const SizedBox(height: 24),

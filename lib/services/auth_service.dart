@@ -20,9 +20,11 @@ class AuthService {
   static const String _keyUser = 'auth_user';
 
   Future<ApiResponse<AuthData>> login({
-    required String email,
+    String? identifier,
+    String? email,
     required String password,
   }) async {
+    final loginIdentifier = (identifier ?? email ?? '').trim();
     try {
       final response = await http
           .post(
@@ -32,7 +34,7 @@ class AuthService {
               'Accept': 'application/json',
             },
             body: jsonEncode({
-              'email': email.trim(),
+              'identifier': loginIdentifier,
               'password': password,
             }),
           )

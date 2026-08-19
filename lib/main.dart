@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'screens/admin/admin_home.dart';
 import 'screens/auth/forgot_password_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
@@ -27,6 +28,7 @@ class AkademikApp extends StatelessWidget {
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen(),
         GuruHome.routeName: (context) => const GuruHome(),
+        AdminHome.routeName: (context) => const AdminHome(),
       },
     );
   }

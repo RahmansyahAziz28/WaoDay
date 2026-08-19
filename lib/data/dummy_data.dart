@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../models/models.dart';
 
-enum UserRole { guru }
+enum UserRole { guru, admin }
 
 class AppData extends ChangeNotifier {
   AppData._internal() {
@@ -27,9 +27,9 @@ class AppData extends ChangeNotifier {
 
   void _seed() {
     sekolahList.addAll(const [
-      Sekolah(id: 'sk1', nama: 'SMA Negeri 1 Malang'),
-      Sekolah(id: 'sk2', nama: 'SMK Negeri 1 Kepanjen'),
-      Sekolah(id: 'sk3', nama: 'SMA Negeri 2 Malang'),
+      Sekolah(id: 'sk1', nama: 'SMA Negeri 1 Malang', alamat: 'Jl. Tugu No. 1, Malang'),
+      Sekolah(id: 'sk2', nama: 'SMK Negeri 1 Kepanjen', alamat: 'Jl. Raya Kepanjen No. 45, Malang'),
+      Sekolah(id: 'sk3', nama: 'SMA Negeri 2 Malang', alamat: 'Jl. Laksamana Martadinata No. 24, Malang'),
     ]);
 
     siswaList.addAll(const [
@@ -79,7 +79,8 @@ class AppData extends ChangeNotifier {
   void setAuthData(AuthData authData) {
     token = authData.token;
     currentUser = authData.user;
-    currentRole = UserRole.guru;
+    final roleStr = authData.user.role.toLowerCase();
+    currentRole = (roleStr == 'admin' || roleStr == 'administrator') ? UserRole.admin : UserRole.guru;
 
     final name = authData.user.name ?? authData.user.email.split('@').first;
     currentGuru = Guru(
@@ -93,8 +94,12 @@ class AppData extends ChangeNotifier {
   }
 
   void loginAs(UserRole role) {
-    currentRole = UserRole.guru;
-    currentGuru = guruList[1];
+    currentRole = role;
+    if (role == UserRole.guru) {
+      currentGuru = guruList[1];
+    } else {
+      currentGuru = null;
+    }
     notifyListeners();
   }
 
