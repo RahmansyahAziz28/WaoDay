@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 
 import '../config/api_config.dart';
 import '../data/dummy_data.dart';
 import '../models/auth_user.dart';
 import '../models/guru_dashboard.dart';
+import 'api_client.dart';
 import 'auth_service.dart';
 
 class GuruService {
@@ -27,15 +27,17 @@ class GuruService {
     }
 
     try {
-      final response = await http
-          .get(
-            ApiConfig.dashboardGuruUri,
-            headers: {
-              'Authorization': 'Bearer $token',
-              'Accept': 'application/json',
-            },
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.get(
+        ApiConfig.dashboardGuruUri,
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<GuruDashboardData>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData = jsonDecode(response.body) as Map<String, dynamic>;
 

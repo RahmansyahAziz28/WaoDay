@@ -2,13 +2,16 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/api_config.dart';
 import '../data/dummy_data.dart';
 import '../models/auth_user.dart';
+import '../screens/auth/login_screen.dart';
+import '../theme.dart';
+import 'navigation_service.dart';
 
 class AuthService {
   AuthService._internal();
@@ -18,6 +21,63 @@ class AuthService {
   static const String _keyToken = 'auth_token';
   static const String _keyRefreshToken = 'auth_refresh_token';
   static const String _keyUser = 'auth_user';
+
+  bool _isHandlingSessionExpired = false;
+
+  /// Handles 401 Unauthorized globally:
+  /// - Clears local token and session state.
+  /// - Redirects the user to the Login Screen.
+  /// - Shows a clear notification that the session has expired.
+  /// - Debounces rapid duplicate 401 triggers.
+  Future<void> handleSessionExpired([String? customMessage]) async {
+    if (_isHandlingSessionExpired) return;
+    _isHandlingSessionExpired = true;
+
+    try {
+      await _clearSession();
+      AppData.instance.clearAuth();
+
+      // Immediately navigate back to login screen, clearing entire navigation stack
+      appNavigatorKey.currentState?.pushNamedAndRemoveUntil(
+        LoginScreen.routeName,
+        (route) => false,
+      );
+
+      final message = customMessage ?? 'Sesi login telah berakhir. Silakan login kembali.';
+
+      // Show floating notification on ScaffoldMessenger
+      appMessengerKey.currentState?.clearSnackBars();
+      appMessengerKey.currentState?.showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              const Icon(Icons.warning_amber_rounded, color: Colors.white),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  message,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: AppColors.error,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 4),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      );
+    } catch (e) {
+      debugPrint('Error during handleSessionExpired: $e');
+    } finally {
+      Future.delayed(const Duration(seconds: 2), () {
+        _isHandlingSessionExpired = false;
+      });
+    }
+  }
 
   Future<ApiResponse<AuthData>> login({
     String? identifier,

@@ -1,6 +1,9 @@
+export 'admin_sekolah.dart';
 export 'auth_user.dart';
 export 'guru.dart';
 export 'guru_dashboard.dart';
 export 'kelas.dart';
 export 'sekolah.dart';
 export 'siswa.dart';
+export 'materi.dart';
+export 'game_token.dart';

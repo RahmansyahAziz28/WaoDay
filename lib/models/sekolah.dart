@@ -34,3 +34,47 @@ class Sekolah {
     if (updatedAt != null) 'updated_at': updatedAt,
   };
 }
+
+/// Paginated Sekolah Response Model according to API GET /api/sekolah?page=1&limit=20
+class PaginatedSekolahResponse {
+  final bool success;
+  final int count;
+  final int page;
+  final int limit;
+  final List<Sekolah> data;
+  final String? message;
+
+  const PaginatedSekolahResponse({
+    required this.success,
+    required this.count,
+    required this.page,
+    required this.limit,
+    required this.data,
+    this.message,
+  });
+
+  factory PaginatedSekolahResponse.fromJson(
+    Map<String, dynamic> json, {
+    int defaultPage = 1,
+    int defaultLimit = 20,
+  }) {
+    final rawList = json['data'];
+    final List<Sekolah> items = [];
+    if (rawList is List) {
+      for (final item in rawList) {
+        if (item is Map) {
+          items.add(Sekolah.fromJson(Map<String, dynamic>.from(item)));
+        }
+      }
+    }
+
+    return PaginatedSekolahResponse(
+      success: json['success'] == true,
+      count: int.tryParse(json['count']?.toString() ?? '') ?? items.length,
+      page: int.tryParse(json['page']?.toString() ?? '') ?? defaultPage,
+      limit: int.tryParse(json['limit']?.toString() ?? '') ?? defaultLimit,
+      data: items,
+      message: json['message']?.toString(),
+    );
+  }
+}

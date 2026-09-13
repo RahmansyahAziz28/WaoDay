@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../data/dummy_data.dart';
 import '../../models/models.dart';
+import '../../services/game_token_service.dart';
 import '../../services/kelas_service.dart';
 import '../../theme.dart';
 import '../../widgets/widgets.dart';
+import 'buat_token_ujian_screen.dart';
+import 'rekap_nilai_ujian_screen.dart';
 
 class DetailKelasScreen extends StatefulWidget {
   const DetailKelasScreen({super.key, required this.kelas});
@@ -18,8 +22,10 @@ class DetailKelasScreen extends StatefulWidget {
 class _DetailKelasScreenState extends State<DetailKelasScreen> {
   late Kelas _currentKelas;
   List<Siswa> _siswaList = [];
+  List<GameTokenItem> _tokenList = [];
   bool _isLoading = false;
   String? _errorMessage;
+  int _selectedTabIndex = 0; // 0: Siswa, 1: Token Ujian
 
   @override
   void initState() {
@@ -39,12 +45,14 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
       final futures = await Future.wait([
         KelasService.instance.getKelasDetail(_currentKelas.id),
         KelasService.instance.getSiswaInKelas(_currentKelas.id),
+        GameTokenService.instance.getTokensByKelas(_currentKelas.id),
       ]);
 
       if (!mounted) return;
 
       final detailRes = futures[0] as ApiResponse<Kelas>;
       final siswaRes = futures[1] as ApiResponse<List<Siswa>>;
+      final tokenRes = futures[2] as ApiResponse<List<GameTokenItem>>;
 
       setState(() {
         _isLoading = false;
@@ -54,6 +62,9 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
         if (siswaRes.success && siswaRes.data != null) {
           _siswaList = siswaRes.data!;
         }
+        if (tokenRes.success && tokenRes.data != null) {
+          _tokenList = tokenRes.data!;
+        }
       });
     } catch (e) {
       if (!mounted) return;
@@ -62,6 +73,58 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
         _errorMessage = 'Gagal memuat data: ${e.toString()}';
       });
     }
+  }
+
+  Future<void> _openBuatToken() async {
+    final res = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => BuatTokenUjianScreen(kelas: _currentKelas),
+      ),
+    );
+    if (res == true) {
+      setState(() => _selectedTabIndex = 1);
+      _loadData();
+    }
+  }
+
+  Widget _buildTokenInfoChip({
+    required IconData icon,
+    required String label,
+    bool isHighlight = false,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: isHighlight
+            ? AppColors.primary.withValues(alpha: 0.1)
+            : AppColors.background,
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(
+          color: isHighlight
+              ? AppColors.primary.withValues(alpha: 0.3)
+              : AppColors.border,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 13,
+            color: isHighlight ? AppColors.primary : AppColors.textSecondary,
+          ),
+          const SizedBox(width: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: isHighlight ? FontWeight.w700 : FontWeight.w500,
+              color: isHighlight ? AppColors.primary : AppColors.textSecondary,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void _showSiswaOptions(Siswa siswa) {
@@ -77,7 +140,10 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 8,
+                ),
                 child: Row(
                   children: [
                     AppAvatar(name: siswa.nama, size: 36),
@@ -109,7 +175,10 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
               ),
               const Divider(),
               ListTile(
-                leading: const Icon(Icons.edit_outlined, color: AppColors.primary),
+                leading: const Icon(
+                  Icons.edit_outlined,
+                  color: AppColors.primary,
+                ),
                 title: const Text('Edit Siswa'),
                 onTap: () {
                   Navigator.of(bottomSheetContext).pop();
@@ -117,8 +186,14 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.delete_outline, color: AppColors.error),
-                title: const Text('Hapus Siswa', style: TextStyle(color: AppColors.error)),
+                leading: const Icon(
+                  Icons.delete_outline,
+                  color: AppColors.error,
+                ),
+                title: const Text(
+                  'Hapus Siswa',
+                  style: TextStyle(color: AppColors.error),
+                ),
                 onTap: () {
                   Navigator.of(bottomSheetContext).pop();
                   _handleDeleteSiswa(siswa);
@@ -147,17 +222,16 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
     if (res.success) {
       scaffoldMessenger.showSnackBar(
         SnackBar(
-          content: Text(res.message.isNotEmpty ? res.message : 'Siswa berhasil dihapus'),
+          content: Text(
+            res.message.isNotEmpty ? res.message : 'Siswa berhasil dihapus',
+          ),
           backgroundColor: AppColors.success,
         ),
       );
       _loadData();
     } else {
       scaffoldMessenger.showSnackBar(
-        SnackBar(
-          content: Text(res.message),
-          backgroundColor: AppColors.error,
-        ),
+        SnackBar(content: Text(res.message), backgroundColor: AppColors.error),
       );
     }
   }
@@ -167,22 +241,16 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
     final defaultSekolah = _currentKelas.sekolah.isNotEmpty
         ? _currentKelas.sekolah
         : (AppData.instance.guruDashboardData?.profil.sekolah?.namaSekolah ??
-            AppData.instance.currentGuru?.sekolah ??
-            '');
-    final defaultSekolahId = _currentKelas.sekolahId ??
+              AppData.instance.currentGuru?.sekolah ??
+              '');
+    final defaultSekolahId =
+        _currentKelas.sekolahId ??
         AppData.instance.guruDashboardData?.profil.sekolahId ??
         AppData.instance.guruDashboardData?.profil.sekolah?.id ??
         '';
 
     final namaCtrl = TextEditingController(text: isEdit ? siswa.nama : '');
     final nisCtrl = TextEditingController(text: isEdit ? siswa.nis : '');
-    final sekolahCtrl = TextEditingController(
-      text: isEdit ? siswa.sekolah : defaultSekolah,
-    );
-    final kodeKelasCtrl = TextEditingController(
-      text: isEdit ? siswa.kelas : _currentKelas.kodeKelas,
-    );
-    final sekolahIdCtrl = TextEditingController(text: defaultSekolahId);
 
     bool isSubmitting = false;
     String? formError;
@@ -236,12 +304,19 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.error_outline, size: 18, color: AppColors.error),
+                            const Icon(
+                              Icons.error_outline,
+                              size: 18,
+                              color: AppColors.error,
+                            ),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
                                 formError!,
-                                style: const TextStyle(fontSize: 13, color: AppColors.error),
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  color: AppColors.error,
+                                ),
                               ),
                             ),
                           ],
@@ -263,29 +338,6 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                       keyboardType: TextInputType.number,
                       icon: Icons.badge_outlined,
                     ),
-                    const SizedBox(height: 14),
-                    if (!isEdit) ...[
-                      AppInput(
-                        label: 'Nama Sekolah',
-                        hint: 'Nama Sekolah',
-                        controller: sekolahCtrl,
-                        icon: Icons.apartment_outlined,
-                      ),
-                      const SizedBox(height: 14),
-                      AppInput(
-                        label: 'Kode Kelas',
-                        hint: 'Kode Kelas',
-                        controller: kodeKelasCtrl,
-                        icon: Icons.qr_code_outlined,
-                      ),
-                    ] else ...[
-                      AppInput(
-                        label: 'Sekolah ID',
-                        hint: 'ID Sekolah',
-                        controller: sekolahIdCtrl,
-                        icon: Icons.apartment_outlined,
-                      ),
-                    ],
                     const SizedBox(height: 24),
                     AppButton(
                       label: isEdit ? 'Simpan Perubahan' : 'Tambah Siswa',
@@ -293,9 +345,6 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                       onPressed: () async {
                         final nama = namaCtrl.text.trim();
                         final nis = nisCtrl.text.trim();
-                        final sekolah = sekolahCtrl.text.trim();
-                        final kodeKelas = kodeKelasCtrl.text.trim();
-                        final sekolahId = sekolahIdCtrl.text.trim();
 
                         if (nama.isEmpty || nis.isEmpty) {
                           setModalState(() {
@@ -309,7 +358,9 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                           formError = null;
                         });
 
-                        final scaffoldMessenger = ScaffoldMessenger.of(this.context);
+                        final scaffoldMessenger = ScaffoldMessenger.of(
+                          this.context,
+                        );
                         ApiResponse<void> res;
 
                         if (isEdit) {
@@ -317,27 +368,40 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                             id: siswa.id,
                             namaSiswa: nama,
                             nis: nis,
-                            sekolahId: sekolahId.isNotEmpty ? sekolahId : defaultSekolahId,
+                            sekolahId: siswa.sekolahId ?? defaultSekolahId,
+                            namaSekolah: siswa.sekolah.isNotEmpty
+                                ? siswa.sekolah
+                                : defaultSekolah,
+                            kodeKelas: siswa.kelas.isNotEmpty
+                                ? siswa.kelas
+                                : _currentKelas.kodeKelas,
+                            kelasId: _currentKelas.id,
                           );
                         } else {
                           res = await KelasService.instance.createSiswa(
                             namaSiswa: nama,
                             nis: nis,
-                            namaSekolah: sekolah.isNotEmpty ? sekolah : defaultSekolah,
-                            kodeKelas: kodeKelas.isNotEmpty ? kodeKelas : _currentKelas.kodeKelas,
+                            namaSekolah: defaultSekolah,
+                            kodeKelas: _currentKelas.kodeKelas,
+                            sekolahId: defaultSekolahId,
+                            kelasId: _currentKelas.id,
                           );
                         }
 
                         if (!mounted) return;
 
                         if (res.success) {
-                          Navigator.of(sheetContext).pop();
+                          if (sheetContext.mounted) {
+                            Navigator.of(sheetContext).pop();
+                          }
                           scaffoldMessenger.showSnackBar(
                             SnackBar(
                               content: Text(
                                 res.message.isNotEmpty
                                     ? res.message
-                                    : (isEdit ? 'Data siswa berhasil diperbarui' : 'Siswa berhasil ditambahkan'),
+                                    : (isEdit
+                                          ? 'Data siswa berhasil diperbarui'
+                                          : 'Siswa berhasil ditambahkan'),
                               ),
                               backgroundColor: AppColors.success,
                             ),
@@ -363,14 +427,11 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final namaSekolah = _currentKelas.sekolah.isNotEmpty
-        ? _currentKelas.sekolah
-        : (AppData.instance.guruDashboardData?.profil.sekolah?.namaSekolah ?? '-');
     final guruPengampu = _currentKelas.guruPengampu.isNotEmpty
         ? _currentKelas.guruPengampu
         : (AppData.instance.guruDashboardData?.profil.namaGuru ??
-            AppData.instance.currentGuru?.nama ??
-            '-');
+              AppData.instance.currentGuru?.nama ??
+              '-');
 
     return Scaffold(
       appBar: AppBar(
@@ -384,9 +445,14 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _showSiswaFormModal(),
-        icon: const Icon(Icons.person_add_alt_1),
-        label: const Text('Tambah Siswa'),
+        heroTag: _selectedTabIndex == 0
+            ? 'fab_detail_kelas_siswa'
+            : 'fab_detail_kelas_token',
+        onPressed: _selectedTabIndex == 0
+            ? () => _showSiswaFormModal()
+            : () => _openBuatToken(),
+        icon: Icon(_selectedTabIndex == 0 ? Icons.person_add_alt_1 : Icons.add),
+        label: Text(_selectedTabIndex == 0 ? 'Tambah Siswa' : 'Buat Token Ujian'),
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
       ),
@@ -402,24 +468,6 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InfoRow(
-                    icon: Icons.qr_code_outlined,
-                    label: 'Kode Kelas',
-                    value: _currentKelas.kodeKelas,
-                  ),
-                  const Divider(),
-                  InfoRow(
-                    icon: Icons.class_outlined,
-                    label: 'Nama Kelas',
-                    value: _currentKelas.namaKelas,
-                  ),
-                  const Divider(),
-                  InfoRow(
-                    icon: Icons.apartment_outlined,
-                    label: 'Sekolah',
-                    value: namaSekolah,
-                  ),
-                  const Divider(),
-                  InfoRow(
                     icon: Icons.person_outline,
                     label: 'Guru Pengampu',
                     value: guruPengampu,
@@ -433,104 +481,283 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
-            // Header Daftar Siswa
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    const Text(
-                      'Daftar Siswa',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.text,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        '${_siswaList.length}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.primary,
+            // Tab Selector: Siswa vs Token Ujian
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.background,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.border),
+              ),
+              padding: const EdgeInsets.all(4),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () => setState(() => _selectedTabIndex = 0),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          color: _selectedTabIndex == 0
+                              ? AppColors.surface
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: _selectedTabIndex == 0
+                              ? [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.05),
+                                    blurRadius: 4,
+                                    offset: const Offset(0, 2),
+                                  )
+                                ]
+                              : null,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.people_alt_outlined,
+                              size: 18,
+                              color: _selectedTabIndex == 0
+                                  ? AppColors.primary
+                                  : AppColors.textSecondary,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Siswa (${_siswaList.length})',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: _selectedTabIndex == 0
+                                    ? FontWeight.w700
+                                    : FontWeight.w600,
+                                color: _selectedTabIndex == 0
+                                    ? AppColors.primary
+                                    : AppColors.textSecondary,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () => setState(() => _selectedTabIndex = 1),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          color: _selectedTabIndex == 1
+                              ? AppColors.surface
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: _selectedTabIndex == 1
+                              ? [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.05),
+                                    blurRadius: 4,
+                                    offset: const Offset(0, 2),
+                                  )
+                                ]
+                              : null,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.vpn_key_rounded,
+                              size: 18,
+                              color: _selectedTabIndex == 1
+                                  ? AppColors.primary
+                                  : AppColors.textSecondary,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Token Ujian (${_tokenList.length})',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: _selectedTabIndex == 1
+                                    ? FontWeight.w700
+                                    : FontWeight.w600,
+                                color: _selectedTabIndex == 1
+                                    ? AppColors.primary
+                                    : AppColors.textSecondary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // ── TAB 0: DAFTAR SISWA ──────────────────────────────────────────
+            if (_selectedTabIndex == 0) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Daftar Siswa',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.text,
+                    ),
+                  ),
+                  Text(
+                    '${_siswaList.length} Siswa',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              if (_isLoading && _siswaList.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40),
+                  child: Center(
+                    child: LoadingState(message: 'Memuat data siswa...'),
+                  ),
+                )
+              else if (_siswaList.isEmpty)
+                EmptyState(
+                  icon: Icons.people_outline,
+                  title: 'Belum ada data siswa',
+                  message:
+                      _errorMessage ??
+                      'Belum ada siswa di kelas ini. Tekan tombol Tambah Siswa untuk mendaftarkan siswa baru.',
+                )
+              else
+                ..._siswaList.map(
+                  (s) => Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: AppCard(
+                      onTap: () => _showSiswaOptions(s),
+                      child: InkWell(
+                        onLongPress: () => _showSiswaOptions(s),
+                        borderRadius: BorderRadius.circular(16),
+                        child: Row(
+                          children: [
+                            AppAvatar(name: s.nama, size: 42),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    s.nama,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.text,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    'NIS: ${s.nis}',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: AppColors.textSecondary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.more_vert,
+                                size: 20,
+                                color: AppColors.textSecondary,
+                              ),
+                              onPressed: () => _showSiswaOptions(s),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ]
+
+            // ── TAB 1: TOKEN UJIAN ───────────────────────────────────────────
+            else ...[
+              // Banner Tombol Buat Token Baru
+              Container(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [AppColors.primary, AppColors.primaryDark],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primary.withValues(alpha: 0.25),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
                   ],
                 ),
-                TextButton.icon(
-                  onPressed: () => _showSiswaFormModal(),
-                  icon: const Icon(Icons.add, size: 18),
-                  label: const Text('Tambah'),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-
-            if (_isLoading && _siswaList.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 40),
-                child: Center(child: LoadingState(message: 'Memuat data siswa...')),
-              )
-            else if (_siswaList.isEmpty)
-              EmptyState(
-                icon: Icons.people_outline,
-                title: 'Belum ada data siswa',
-                message: _errorMessage ??
-                    'Belum ada siswa di kelas ini. Tekan tombol Tambah Siswa untuk mendaftarkan siswa baru.',
-              )
-            else
-              ..._siswaList.map(
-                (s) => Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: AppCard(
-                    onTap: () => _showSiswaOptions(s),
-                    child: InkWell(
-                      onLongPress: () => _showSiswaOptions(s),
-                      borderRadius: BorderRadius.circular(16),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16),
+                    onTap: _openBuatToken,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 14,
+                      ),
                       child: Row(
                         children: [
-                          AppAvatar(name: s.nama, size: 42),
-                          const SizedBox(width: 12),
-                          Expanded(
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Icon(
+                              Icons.add_task_rounded,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                          ),
+                          const SizedBox(width: 14),
+                          const Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  s.nama,
-                                  style: const TextStyle(
-                                    fontSize: 14,
+                                  'Buat Token Ujian Baru',
+                                  style: TextStyle(
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w700,
-                                    color: AppColors.text,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                const SizedBox(height: 2),
+                                SizedBox(height: 2),
                                 Text(
-                                  'NIS: ${s.nis}',
-                                  style: const TextStyle(
+                                  'Rilis paket soal & kode token baru untuk kelas ini',
+                                  style: TextStyle(
                                     fontSize: 12,
-                                    color: AppColors.textSecondary,
+                                    color: Colors.white70,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.more_vert,
-                              size: 20,
-                              color: AppColors.textSecondary,
-                            ),
-                            onPressed: () => _showSiswaOptions(s),
+                          const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.white,
+                            size: 16,
                           ),
                         ],
                       ),
@@ -538,6 +765,248 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Daftar Token Ujian',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.text,
+                    ),
+                  ),
+                  Text(
+                    '${_tokenList.length} Token',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+
+              if (_isLoading && _tokenList.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40),
+                  child: Center(
+                    child: LoadingState(message: 'Memuat token ujian...'),
+                  ),
+                )
+              else if (_tokenList.isEmpty)
+                EmptyState(
+                  icon: Icons.vpn_key_outlined,
+                  title: 'Belum ada token ujian',
+                  message:
+                      'Belum ada token ujian yang dibuat untuk kelas ini. Tekan tombol Buat Token Ujian Baru untuk merilis ujian.',
+                )
+              else
+                ..._tokenList.map(
+                  (token) => Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: AppCard(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => RekapNilaiUjianScreen(
+                              tokenId: token.id,
+                              kodeToken: token.kodeToken,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  token.namaSesi,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.text,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              // Status: Aktif / Nonaktif
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 3,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: token.aktif
+                                      ? AppColors.success.withValues(alpha: 0.12)
+                                      : AppColors.border,
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Text(
+                                  token.aktif ? 'Aktif' : 'Nonaktif',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700,
+                                    color: token.aktif
+                                        ? AppColors.success
+                                        : AppColors.textSecondary,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+
+                          // Badge Kode Token (Teks tebal dengan background kontras) + icon Salin
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.background,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: AppColors.border),
+                            ),
+                            child: Row(
+                              children: [
+                                const Text(
+                                  'KODE TOKEN: ',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.textSecondary,
+                                    letterSpacing: 0.8,
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primary.withValues(alpha: 0.1),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: Text(
+                                    token.kodeToken,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w900,
+                                      color: AppColors.primary,
+                                      letterSpacing: 2,
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                InkWell(
+                                  borderRadius: BorderRadius.circular(6),
+                                  onTap: () {
+                                    Clipboard.setData(
+                                      ClipboardData(text: token.kodeToken),
+                                    );
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Kode token ${token.kodeToken} disalin!',
+                                        ),
+                                        backgroundColor: AppColors.success,
+                                        duration: const Duration(seconds: 2),
+                                      ),
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 6,
+                                      vertical: 4,
+                                    ),
+                                    child: Row(
+                                      children: const [
+                                        Icon(
+                                          Icons.copy_rounded,
+                                          size: 16,
+                                          color: AppColors.primary,
+                                        ),
+                                        SizedBox(width: 4),
+                                        Text(
+                                          'Salin',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.primary,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+
+                          // Info Chips
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 6,
+                            children: [
+                              if (token.semester != null)
+                                _buildTokenInfoChip(
+                                  icon: Icons.calendar_today_outlined,
+                                  label: 'Semester ${token.semester}',
+                                ),
+                              _buildTokenInfoChip(
+                                icon: Icons.quiz_outlined,
+                                label: '${token.jumlahSoal} Soal',
+                              ),
+                              _buildTokenInfoChip(
+                                icon: Icons.group_outlined,
+                                label: '${token.totalPemain} Siswa Selesai',
+                                isHighlight: token.totalPemain > 0,
+                              ),
+                            ],
+                          ),
+                          const Divider(height: 20),
+
+                          // Hint tap: "Lihat Rekap Nilai >"
+                          Row(
+                            children: [
+                              const Text(
+                                'Ketuk kartu untuk melihat rekap nilai',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.textSecondary,
+                                ),
+                              ),
+                              const Spacer(),
+                              const Text(
+                                'Rekap Nilai',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.primary,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              const Icon(
+                                Icons.chevron_right,
+                                size: 18,
+                                color: AppColors.primary,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+            ],
           ],
         ),
       ),

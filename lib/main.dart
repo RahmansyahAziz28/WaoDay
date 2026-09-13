@@ -6,6 +6,8 @@ import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
 import 'screens/auth/splash_screen.dart';
 import 'screens/guru/guru_home.dart';
+import 'screens/superadmin/superadmin_home.dart';
+import 'services/navigation_service.dart';
 import 'theme.dart';
 
 void main() {
@@ -20,6 +22,8 @@ class AkademikApp extends StatelessWidget {
     return MaterialApp(
       title: 'Akademik',
       debugShowCheckedModeBanner: false,
+      navigatorKey: appNavigatorKey,
+      scaffoldMessengerKey: appMessengerKey,
       theme: AppTheme.light,
       initialRoute: SplashScreen.routeName,
       routes: {
@@ -29,6 +33,7 @@ class AkademikApp extends StatelessWidget {
         ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen(),
         GuruHome.routeName: (context) => const GuruHome(),
         AdminHome.routeName: (context) => const AdminHome(),
+        SuperAdminHome.routeName: (context) => const SuperAdminHome(),
       },
     );
   }

@@ -5,6 +5,7 @@ import '../../services/auth_service.dart';
 import '../../theme.dart';
 import '../admin/admin_home.dart';
 import '../guru/guru_home.dart';
+import '../superadmin/superadmin_home.dart';
 import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -35,7 +36,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (session != null) {
       final roleStr = session.user.role.toLowerCase();
-      if (roleStr == 'admin' || roleStr == 'administrator' || AppData.instance.currentRole == UserRole.admin) {
+      if (roleStr == 'superadmin' ||
+          roleStr == 'super_admin' ||
+          AppData.instance.currentRole == UserRole.superadmin) {
+        Navigator.of(context).pushReplacementNamed(SuperAdminHome.routeName);
+      } else if (roleStr == 'admin' ||
+          roleStr == 'administrator' ||
+          AppData.instance.currentRole == UserRole.admin) {
         Navigator.of(context).pushReplacementNamed(AdminHome.routeName);
       } else {
         Navigator.of(context).pushReplacementNamed(GuruHome.routeName);

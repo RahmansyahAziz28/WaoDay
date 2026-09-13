@@ -31,16 +31,19 @@ class Guru {
   String get namaGuru => nama;
 
   factory Guru.fromJson(Map<String, dynamic> json) {
-    final sekolahMap = json['sekolah'] is Map<String, dynamic>
-        ? json['sekolah'] as Map<String, dynamic>
-        : null;
+    Map<String, dynamic>? sekolahMap;
+    if (json['sekolah'] is Map) {
+      sekolahMap = Map<String, dynamic>.from(json['sekolah'] as Map);
+    }
 
-    final List<GuruKelasItem> parsedKelas = json['kelas'] is List
-        ? (json['kelas'] as List)
-            .whereType<Map<String, dynamic>>()
-            .map((e) => GuruKelasItem.fromJson(e))
-            .toList()
-        : <GuruKelasItem>[];
+    final List<GuruKelasItem> parsedKelas = [];
+    if (json['kelas'] is List) {
+      for (final k in json['kelas'] as List) {
+        if (k is Map) {
+          parsedKelas.add(GuruKelasItem.fromJson(Map<String, dynamic>.from(k)));
+        }
+      }
+    }
 
     final primaryKodeKelas = parsedKelas.isNotEmpty
         ? parsedKelas.first.kodeKelas
@@ -48,8 +51,7 @@ class Guru {
 
     final schoolName = sekolahMap?['nama_sekolah']?.toString() ??
         json['nama_sekolah']?.toString() ??
-        json['sekolah']?.toString() ??
-        '-';
+        (json['sekolah'] is String ? json['sekolah'].toString() : '-');
 
     return Guru(
       id: json['id']?.toString() ?? '',
@@ -77,4 +79,44 @@ class Guru {
     if (createdAt != null) 'created_at': createdAt,
     if (updatedAt != null) 'updated_at': updatedAt,
   };
+}
+
+/// Paginated Guru Response Model according to API GET /api/guru
+class PaginatedGuruResponse {
+  final bool success;
+  final int count;
+  final int page;
+  final int limit;
+  final List<Guru> data;
+  final String? message;
+
+  const PaginatedGuruResponse({
+    required this.success,
+    required this.count,
+    required this.page,
+    required this.limit,
+    required this.data,
+    this.message,
+  });
+
+  factory PaginatedGuruResponse.fromJson(Map<String, dynamic> json) {
+    final rawList = json['data'];
+    final List<Guru> items = [];
+    if (rawList is List) {
+      for (final item in rawList) {
+        if (item is Map) {
+          items.add(Guru.fromJson(Map<String, dynamic>.from(item)));
+        }
+      }
+    }
+
+    return PaginatedGuruResponse(
+      success: json['success'] == true,
+      count: int.tryParse(json['count']?.toString() ?? '') ?? items.length,
+      page: int.tryParse(json['page']?.toString() ?? '') ?? 1,
+      limit: int.tryParse(json['limit']?.toString() ?? '') ?? 20,
+      data: items,
+      message: json['message']?.toString(),
+    );
+  }
 }

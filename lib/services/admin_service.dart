@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 
 import '../config/api_config.dart';
 import '../data/dummy_data.dart';
 import '../models/auth_user.dart';
 import '../models/guru.dart';
 import '../models/sekolah.dart';
+import 'api_client.dart';
 import 'auth_service.dart';
 
 class AdminService {
@@ -18,18 +18,11 @@ class AdminService {
   static final AdminService instance = AdminService._internal();
 
   Future<String?> _getToken() async {
-    return await AuthService.instance.getToken() ?? AppData.instance.token;
-  }
-
-  Map<String, String> _headers(String token, {bool isJson = true}) {
-    final headers = <String, String>{
-      'Authorization': 'Bearer $token',
-      'Accept': 'application/json',
-    };
-    if (isJson) {
-      headers['Content-Type'] = 'application/json';
+    try {
+      return await AuthService.instance.getToken() ?? AppData.instance.token;
+    } catch (_) {
+      return AppData.instance.token;
     }
-    return headers;
   }
 
   // ── SEKOLAH CRUD ───────────────────────────────────────────────────────────
@@ -45,9 +38,17 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .get(ApiConfig.sekolahUri, headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.get(
+        ApiConfig.sekolahUri,
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<List<Sekolah>>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -93,6 +94,74 @@ class AdminService {
     }
   }
 
+  /// GET /api/sekolah?page=1&limit=20
+  Future<ApiResponse<PaginatedSekolahResponse>> getSekolahPaginated({
+    int page = 1,
+    int limit = 20,
+  }) async {
+    final token = await _getToken();
+    if (token == null || token.isEmpty) {
+      return const ApiResponse<PaginatedSekolahResponse>(
+        success: false,
+        message: 'Token autentikasi tidak ditemukan. Silakan login kembali.',
+      );
+    }
+
+    try {
+      final uri = ApiConfig.sekolahPaginatedUri(page: page, limit: limit);
+      final response = await ApiClient.instance.get(
+        uri,
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<PaginatedSekolahResponse>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
+
+      final Map<String, dynamic> responseData =
+          jsonDecode(response.body) as Map<String, dynamic>;
+
+      if (response.statusCode >= 200 &&
+          response.statusCode < 300 &&
+          responseData['success'] == true) {
+        final paginated = PaginatedSekolahResponse.fromJson(
+          responseData,
+          defaultPage: page,
+          defaultLimit: limit,
+        );
+        return ApiResponse<PaginatedSekolahResponse>(
+          success: true,
+          message: responseData['message']?.toString() ?? 'Berhasil memuat data sekolah',
+          data: paginated,
+        );
+      } else {
+        return ApiResponse<PaginatedSekolahResponse>(
+          success: false,
+          message: responseData['message']?.toString() ?? 'Gagal memuat daftar sekolah',
+        );
+      }
+    } on SocketException {
+      return const ApiResponse<PaginatedSekolahResponse>(
+        success: false,
+        message: 'Tidak dapat terhubung ke server. Periksa koneksi internet Anda.',
+      );
+    } on TimeoutException {
+      return const ApiResponse<PaginatedSekolahResponse>(
+        success: false,
+        message: 'Koneksi ke server timeout. Silakan coba lagi.',
+      );
+    } catch (e) {
+      debugPrint('Error getSekolahPaginated: $e');
+      return ApiResponse<PaginatedSekolahResponse>(
+        success: false,
+        message: 'Terjadi kesalahan: ${e.toString()}',
+      );
+    }
+  }
+
   /// GET /api/sekolah/:id
   Future<ApiResponse<Sekolah>> getSekolahDetail(String id) async {
     final token = await _getToken();
@@ -104,9 +173,17 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .get(ApiConfig.sekolahDetailUri(id), headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.get(
+        ApiConfig.sekolahDetailUri(id),
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<Sekolah>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -150,16 +227,21 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .post(
-            ApiConfig.sekolahUri,
-            headers: _headers(token),
-            body: jsonEncode({
-              'nama_sekolah': namaSekolah.trim(),
-              'alamat': alamat.trim(),
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.post(
+        ApiConfig.sekolahUri,
+        token: token,
+        body: jsonEncode({
+          'nama_sekolah': namaSekolah.trim(),
+          'alamat': alamat.trim(),
+        }),
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<Sekolah>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -207,16 +289,21 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .put(
-            ApiConfig.sekolahDetailUri(id),
-            headers: _headers(token),
-            body: jsonEncode({
-              'nama_sekolah': namaSekolah.trim(),
-              'alamat': alamat.trim(),
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.put(
+        ApiConfig.sekolahDetailUri(id),
+        token: token,
+        body: jsonEncode({
+          'nama_sekolah': namaSekolah.trim(),
+          'alamat': alamat.trim(),
+        }),
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -254,9 +341,17 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .delete(ApiConfig.sekolahDetailUri(id), headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.delete(
+        ApiConfig.sekolahDetailUri(id),
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -286,20 +381,30 @@ class AdminService {
   // ── GURU CRUD ──────────────────────────────────────────────────────────────
 
   /// GET /api/guru?page=&limit=
-  Future<ApiResponse<List<Guru>>> getGuruList({int page = 1, int limit = 50}) async {
+  /// Parameter wajib: page, limit
+  /// Header: Authorization: Bearer [token]
+  Future<ApiResponse<PaginatedGuruResponse>> getGuruList({int page = 1, int limit = 20}) async {
     final token = await _getToken();
     if (token == null || token.isEmpty) {
-      return const ApiResponse<List<Guru>>(
+      return const ApiResponse<PaginatedGuruResponse>(
         success: false,
-        message: 'Token autentikasi tidak ditemukan.',
+        message: 'Token autentikasi tidak ditemukan. Silakan login kembali.',
       );
     }
 
     try {
       final uri = ApiConfig.guruUri(page: page, limit: limit);
-      final response = await http
-          .get(uri, headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.get(
+        uri,
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<PaginatedGuruResponse>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -307,38 +412,31 @@ class AdminService {
       if (response.statusCode >= 200 &&
           response.statusCode < 300 &&
           responseData['success'] == true) {
-        final rawData = responseData['data'];
-        List<Guru> list = [];
-        if (rawData is List) {
-          list = rawData
-              .whereType<Map<String, dynamic>>()
-              .map((e) => Guru.fromJson(e))
-              .toList();
-        }
-        return ApiResponse<List<Guru>>(
+        final paginated = PaginatedGuruResponse.fromJson(responseData);
+        return ApiResponse<PaginatedGuruResponse>(
           success: true,
           message: responseData['message']?.toString() ?? 'Berhasil memuat daftar guru',
-          data: list,
+          data: paginated,
         );
       } else {
-        return ApiResponse<List<Guru>>(
+        return ApiResponse<PaginatedGuruResponse>(
           success: false,
           message: responseData['message']?.toString() ?? 'Gagal memuat daftar guru',
         );
       }
     } on SocketException {
-      return const ApiResponse<List<Guru>>(
+      return const ApiResponse<PaginatedGuruResponse>(
         success: false,
         message: 'Tidak dapat terhubung ke server. Periksa koneksi internet Anda.',
       );
     } on TimeoutException {
-      return const ApiResponse<List<Guru>>(
+      return const ApiResponse<PaginatedGuruResponse>(
         success: false,
         message: 'Koneksi ke server timeout. Silakan coba lagi.',
       );
     } catch (e) {
       debugPrint('Error getGuruList: $e');
-      return ApiResponse<List<Guru>>(
+      return ApiResponse<PaginatedGuruResponse>(
         success: false,
         message: 'Terjadi kesalahan: ${e.toString()}',
       );
@@ -356,9 +454,17 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .get(ApiConfig.guruDetailUri(id), headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.get(
+        ApiConfig.guruDetailUri(id),
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<Guru>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -389,6 +495,7 @@ class AdminService {
 
   /// POST /api/guru
   /// Body: { "nama_guru": "...", "nim": "...", "nama_sekolah": "...", "kode_kelas": "..." }
+  /// Header: Content-Type: application/json, Authorization: Bearer [token]
   Future<ApiResponse<void>> createGuru({
     required String namaGuru,
     required String nim,
@@ -404,18 +511,23 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .post(
-            ApiConfig.guruUri(),
-            headers: _headers(token),
-            body: jsonEncode({
-              'nama_guru': namaGuru.trim(),
-              'nim': nim.trim(),
-              'nama_sekolah': namaSekolah.trim(),
-              'kode_kelas': kodeKelas.trim(),
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.post(
+        ApiConfig.guruBaseUri,
+        token: token,
+        body: jsonEncode({
+          'nama_guru': namaGuru.trim(),
+          'nim': nim.trim(),
+          'nama_sekolah': namaSekolah.trim(),
+          'kode_kelas': kodeKelas.trim(),
+        }),
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -459,17 +571,22 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .put(
-            ApiConfig.guruDetailUri(id),
-            headers: _headers(token),
-            body: jsonEncode({
-              'nama_guru': namaGuru.trim(),
-              'nim': nim.trim(),
-              'sekolah_id': sekolahId.trim(),
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.put(
+        ApiConfig.guruDetailUri(id),
+        token: token,
+        body: jsonEncode({
+          'nama_guru': namaGuru.trim(),
+          'nim': nim.trim(),
+          'sekolah_id': sekolahId.trim(),
+        }),
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -507,9 +624,17 @@ class AdminService {
     }
 
     try {
-      final response = await http
-          .delete(ApiConfig.guruDetailUri(id), headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.delete(
+        ApiConfig.guruDetailUri(id),
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;

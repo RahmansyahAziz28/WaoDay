@@ -6,6 +6,7 @@ import '../../theme.dart';
 import '../../widgets/widgets.dart';
 import '../admin/admin_home.dart';
 import '../guru/guru_home.dart';
+import '../superadmin/superadmin_home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -65,7 +66,11 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       final roleStr = response.data!.user.role.toLowerCase();
-      if (roleStr == 'admin' ||
+      if (roleStr == 'superadmin' ||
+          roleStr == 'super_admin' ||
+          AppData.instance.currentRole == UserRole.superadmin) {
+        Navigator.of(context).pushReplacementNamed(SuperAdminHome.routeName);
+      } else if (roleStr == 'admin' ||
           roleStr == 'administrator' ||
           AppData.instance.currentRole == UserRole.admin) {
         Navigator.of(context).pushReplacementNamed(AdminHome.routeName);
@@ -121,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 6),
               const Text(
-                'Masuk untuk mengakses sistem akademik sekolah',
+                'Masuk untuk mengakses sistem WaoDay',
                 style: TextStyle(fontSize: 14, color: AppColors.textSecondary),
               ),
               const SizedBox(height: 24),
@@ -160,9 +165,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 16),
               ],
               AppInput(
-                label: 'Email',
+                label: 'NIS',
                 controller: _emailController,
-                hint: 'Masukkan email (misal: admin@sekolah.com)',
+                hint: 'Masukkan NIS (misal: 123456)',
                 icon: Icons.email_outlined,
                 keyboardType: TextInputType.emailAddress,
                 errorText: _emailError,

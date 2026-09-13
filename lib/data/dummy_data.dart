@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../models/models.dart';
 
-enum UserRole { guru, admin }
+enum UserRole { guru, admin, superadmin }
 
 class AppData extends ChangeNotifier {
   AppData._internal() {
@@ -80,7 +80,13 @@ class AppData extends ChangeNotifier {
     token = authData.token;
     currentUser = authData.user;
     final roleStr = authData.user.role.toLowerCase();
-    currentRole = (roleStr == 'admin' || roleStr == 'administrator') ? UserRole.admin : UserRole.guru;
+    if (roleStr == 'superadmin' || roleStr == 'super_admin') {
+      currentRole = UserRole.superadmin;
+    } else if (roleStr == 'admin' || roleStr == 'administrator') {
+      currentRole = UserRole.admin;
+    } else {
+      currentRole = UserRole.guru;
+    }
 
     final name = authData.user.name ?? authData.user.email.split('@').first;
     currentGuru = Guru(

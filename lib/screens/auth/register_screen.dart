@@ -88,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Container(
                   width: 84,
                   height: 84,
-                  decoration: BoxDecoration(color: AppColors.success.withOpacity(0.1), shape: BoxShape.circle),
+                  decoration: BoxDecoration(color: AppColors.success.withValues(alpha: 0.1), shape: BoxShape.circle),
                   alignment: Alignment.center,
                   child: const Icon(Icons.check_circle, color: AppColors.success, size: 44),
                 ),
@@ -150,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Text('Sekolah', style: Theme.of(context).textTheme.labelLarge),
               const SizedBox(height: 6),
               DropdownButtonFormField<String>(
-                value: _sekolah,
+                initialValue: _sekolah,
                 decoration: InputDecoration(
                   hintText: 'Pilih sekolah',
                   prefixIcon: const Icon(Icons.apartment_outlined, size: 22),

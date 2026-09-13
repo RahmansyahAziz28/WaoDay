@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 
 import '../config/api_config.dart';
 import '../data/dummy_data.dart';
 import '../models/auth_user.dart';
 import '../models/kelas.dart';
 import '../models/siswa.dart';
+import 'api_client.dart';
 import 'auth_service.dart';
 
 class KelasService {
@@ -19,17 +19,6 @@ class KelasService {
 
   Future<String?> _getToken() async {
     return await AuthService.instance.getToken() ?? AppData.instance.token;
-  }
-
-  Map<String, String> _headers(String token, {bool isJson = true}) {
-    final headers = <String, String>{
-      'Authorization': 'Bearer $token',
-      'Accept': 'application/json',
-    };
-    if (isJson) {
-      headers['Content-Type'] = 'application/json';
-    }
-    return headers;
   }
 
   // ── KELAS CRUD ─────────────────────────────────────────────────────────────
@@ -45,9 +34,17 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .get(ApiConfig.kelasUri, headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.get(
+        ApiConfig.kelasUri,
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<List<Kelas>>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -104,9 +101,17 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .get(ApiConfig.kelasDetailUri(id), headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.get(
+        ApiConfig.kelasDetailUri(id),
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<Kelas>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -137,11 +142,12 @@ class KelasService {
   }
 
   /// POST /api/kelas
-  /// Body: { kode_kelas, nama_kelas, nama_sekolah }
+  /// Body: { kode_kelas, nama_kelas, nama_sekolah, [sekolah_id] }
   Future<ApiResponse<void>> createKelas({
     required String kodeKelas,
     required String namaKelas,
-    required String namaSekolah,
+    String? namaSekolah,
+    String? sekolahId,
   }) async {
     final token = await _getToken();
     if (token == null || token.isEmpty) {
@@ -152,17 +158,39 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .post(
-            ApiConfig.kelasUri,
-            headers: _headers(token),
-            body: jsonEncode({
-              'kode_kelas': kodeKelas.trim(),
-              'nama_kelas': namaKelas.trim(),
-              'nama_sekolah': namaSekolah.trim(),
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final effectiveSekolah = (namaSekolah != null && namaSekolah.trim().isNotEmpty)
+          ? namaSekolah.trim()
+          : (AppData.instance.guruDashboardData?.profil.sekolah?.namaSekolah ??
+              AppData.instance.currentGuru?.sekolah ??
+              '');
+      final effectiveSekolahId = (sekolahId != null && sekolahId.trim().isNotEmpty)
+          ? sekolahId.trim()
+          : (AppData.instance.guruDashboardData?.profil.sekolahId ??
+              AppData.instance.guruDashboardData?.profil.sekolah?.id);
+
+      final Map<String, dynamic> bodyMap = {
+        'kode_kelas': kodeKelas.trim(),
+        'nama_kelas': namaKelas.trim(),
+      };
+      if (effectiveSekolah.isNotEmpty) {
+        bodyMap['nama_sekolah'] = effectiveSekolah;
+      }
+      if (effectiveSekolahId != null && effectiveSekolahId.isNotEmpty) {
+        bodyMap['sekolah_id'] = effectiveSekolahId;
+      }
+
+      final response = await ApiClient.instance.post(
+        ApiConfig.kelasUri,
+        token: token,
+        body: jsonEncode(bodyMap),
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -190,13 +218,14 @@ class KelasService {
   }
 
   /// PUT /api/kelas/:id
-  /// Body: { kode_kelas, nama_kelas, sekolah_id, guru_id }
+  /// Body: { kode_kelas, nama_kelas, sekolah_id, guru_id, [nama_sekolah] }
   Future<ApiResponse<void>> updateKelas({
     required String id,
     required String kodeKelas,
     required String namaKelas,
-    required String sekolahId,
-    required String guruId,
+    String? sekolahId,
+    String? guruId,
+    String? namaSekolah,
   }) async {
     final token = await _getToken();
     if (token == null || token.isEmpty) {
@@ -207,18 +236,48 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .put(
-            ApiConfig.kelasDetailUri(id),
-            headers: _headers(token),
-            body: jsonEncode({
-              'kode_kelas': kodeKelas.trim(),
-              'nama_kelas': namaKelas.trim(),
-              'sekolah_id': sekolahId.trim(),
-              'guru_id': guruId.trim(),
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final effectiveSekolahId = (sekolahId != null && sekolahId.trim().isNotEmpty)
+          ? sekolahId.trim()
+          : (AppData.instance.guruDashboardData?.profil.sekolahId ??
+              AppData.instance.guruDashboardData?.profil.sekolah?.id ??
+              '');
+      final effectiveGuruId = (guruId != null && guruId.trim().isNotEmpty)
+          ? guruId.trim()
+          : (AppData.instance.guruDashboardData?.profil.id ??
+              AppData.instance.currentUser?.id ??
+              '');
+      final effectiveNamaSekolah = (namaSekolah != null && namaSekolah.trim().isNotEmpty)
+          ? namaSekolah.trim()
+          : (AppData.instance.guruDashboardData?.profil.sekolah?.namaSekolah ??
+              AppData.instance.currentGuru?.sekolah ??
+              '');
+
+      final Map<String, dynamic> bodyMap = {
+        'kode_kelas': kodeKelas.trim(),
+        'nama_kelas': namaKelas.trim(),
+      };
+      if (effectiveSekolahId.isNotEmpty) {
+        bodyMap['sekolah_id'] = effectiveSekolahId;
+      }
+      if (effectiveGuruId.isNotEmpty) {
+        bodyMap['guru_id'] = effectiveGuruId;
+      }
+      if (effectiveNamaSekolah.isNotEmpty) {
+        bodyMap['nama_sekolah'] = effectiveNamaSekolah;
+      }
+
+      final response = await ApiClient.instance.put(
+        ApiConfig.kelasDetailUri(id),
+        token: token,
+        body: jsonEncode(bodyMap),
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -256,9 +315,17 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .delete(ApiConfig.kelasDetailUri(id), headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.delete(
+        ApiConfig.kelasDetailUri(id),
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -298,9 +365,17 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .get(ApiConfig.kelasSiswaUri(kelasId), headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.get(
+        ApiConfig.kelasSiswaUri(kelasId),
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<List<Siswa>>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -309,12 +384,24 @@ class KelasService {
           response.statusCode < 300 &&
           responseData['success'] == true) {
         final rawData = responseData['data'];
+        final kelasInfo = responseData['kelas'] is Map<String, dynamic>
+            ? responseData['kelas'] as Map<String, dynamic>
+            : null;
+        final defaultKodeKelas = kelasInfo?['kode_kelas']?.toString() ??
+            kelasInfo?['nama_kelas']?.toString() ??
+            '';
+
         List<Siswa> list = [];
         if (rawData is List) {
-          list = rawData
-              .whereType<Map<String, dynamic>>()
-              .map((e) => Siswa.fromJson(e))
-              .toList();
+          list = rawData.whereType<Map<String, dynamic>>().map((e) {
+            final item = Map<String, dynamic>.from(e);
+            if (!item.containsKey('kode_kelas') &&
+                !item.containsKey('nama_kelas') &&
+                defaultKodeKelas.isNotEmpty) {
+              item['kode_kelas'] = defaultKodeKelas;
+            }
+            return Siswa.fromJson(item);
+          }).toList();
         }
         return ApiResponse<List<Siswa>>(
           success: true,
@@ -337,12 +424,14 @@ class KelasService {
   }
 
   /// POST /api/siswa
-  /// Body: { nama_siswa, nis, nama_sekolah, kode_kelas }
+  /// Body: { nama_siswa, nis, [nama_sekolah], [kode_kelas], [sekolah_id], [kelas_id] }
   Future<ApiResponse<void>> createSiswa({
     required String namaSiswa,
     required String nis,
-    required String namaSekolah,
-    required String kodeKelas,
+    String? namaSekolah,
+    String? kodeKelas,
+    String? sekolahId,
+    String? kelasId,
   }) async {
     final token = await _getToken();
     if (token == null || token.isEmpty) {
@@ -353,18 +442,45 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .post(
-            ApiConfig.siswaUri,
-            headers: _headers(token),
-            body: jsonEncode({
-              'nama_siswa': namaSiswa.trim(),
-              'nis': nis.trim(),
-              'nama_sekolah': namaSekolah.trim(),
-              'kode_kelas': kodeKelas.trim(),
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final effectiveSekolah = (namaSekolah != null && namaSekolah.trim().isNotEmpty)
+          ? namaSekolah.trim()
+          : (AppData.instance.guruDashboardData?.profil.sekolah?.namaSekolah ??
+              AppData.instance.currentGuru?.sekolah ??
+              '');
+      final effectiveSekolahId = (sekolahId != null && sekolahId.trim().isNotEmpty)
+          ? sekolahId.trim()
+          : (AppData.instance.guruDashboardData?.profil.sekolahId ??
+              AppData.instance.guruDashboardData?.profil.sekolah?.id);
+
+      final Map<String, dynamic> bodyMap = {
+        'nama_siswa': namaSiswa.trim(),
+        'nis': nis.trim(),
+      };
+      if (effectiveSekolah.isNotEmpty) {
+        bodyMap['nama_sekolah'] = effectiveSekolah;
+      }
+      if (kodeKelas != null && kodeKelas.trim().isNotEmpty) {
+        bodyMap['kode_kelas'] = kodeKelas.trim();
+      }
+      if (effectiveSekolahId != null && effectiveSekolahId.isNotEmpty) {
+        bodyMap['sekolah_id'] = effectiveSekolahId;
+      }
+      if (kelasId != null && kelasId.trim().isNotEmpty) {
+        bodyMap['kelas_id'] = kelasId.trim();
+      }
+
+      final response = await ApiClient.instance.post(
+        ApiConfig.siswaUri,
+        token: token,
+        body: jsonEncode(bodyMap),
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -392,12 +508,15 @@ class KelasService {
   }
 
   /// PUT /api/siswa/:id
-  /// Body: { nama_siswa, nis, sekolah_id }
+  /// Body: { nama_siswa, nis, [sekolah_id], [nama_sekolah], [kode_kelas], [kelas_id] }
   Future<ApiResponse<void>> updateSiswa({
     required String id,
     required String namaSiswa,
     required String nis,
-    required String sekolahId,
+    String? sekolahId,
+    String? namaSekolah,
+    String? kodeKelas,
+    String? kelasId,
   }) async {
     final token = await _getToken();
     if (token == null || token.isEmpty) {
@@ -408,17 +527,41 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .put(
-            ApiConfig.siswaDetailUri(id),
-            headers: _headers(token),
-            body: jsonEncode({
-              'nama_siswa': namaSiswa.trim(),
-              'nis': nis.trim(),
-              'sekolah_id': sekolahId.trim(),
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final effectiveSekolahId = (sekolahId != null && sekolahId.trim().isNotEmpty)
+          ? sekolahId.trim()
+          : (AppData.instance.guruDashboardData?.profil.sekolahId ??
+              AppData.instance.guruDashboardData?.profil.sekolah?.id ??
+              '');
+
+      final Map<String, dynamic> bodyMap = {
+        'nama_siswa': namaSiswa.trim(),
+        'nis': nis.trim(),
+      };
+      if (effectiveSekolahId.isNotEmpty) {
+        bodyMap['sekolah_id'] = effectiveSekolahId;
+      }
+      if (namaSekolah != null && namaSekolah.trim().isNotEmpty) {
+        bodyMap['nama_sekolah'] = namaSekolah.trim();
+      }
+      if (kodeKelas != null && kodeKelas.trim().isNotEmpty) {
+        bodyMap['kode_kelas'] = kodeKelas.trim();
+      }
+      if (kelasId != null && kelasId.trim().isNotEmpty) {
+        bodyMap['kelas_id'] = kelasId.trim();
+      }
+
+      final response = await ApiClient.instance.put(
+        ApiConfig.siswaDetailUri(id),
+        token: token,
+        body: jsonEncode(bodyMap),
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;
@@ -456,9 +599,17 @@ class KelasService {
     }
 
     try {
-      final response = await http
-          .delete(ApiConfig.siswaDetailUri(id), headers: _headers(token, isJson: false))
-          .timeout(const Duration(seconds: 15));
+      final response = await ApiClient.instance.delete(
+        ApiConfig.siswaDetailUri(id),
+        token: token,
+      );
+
+      if (response.statusCode == 401) {
+        return const ApiResponse<void>(
+          success: false,
+          message: 'Sesi login telah berakhir. Silakan login kembali.',
+        );
+      }
 
       final Map<String, dynamic> responseData =
           jsonDecode(response.body) as Map<String, dynamic>;

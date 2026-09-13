@@ -283,7 +283,9 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
                         if (!mounted) return;
 
                         if (res.success) {
-                          Navigator.of(sheetContext).pop();
+                          if (sheetContext.mounted) {
+                            Navigator.of(sheetContext).pop();
+                          }
                           scaffoldMessenger.showSnackBar(
                             SnackBar(
                               content: Text(
@@ -335,6 +337,7 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'fab_manajemen_sekolah',
         onPressed: () => _showSekolahFormModal(),
         icon: const Icon(Icons.add_business_rounded),
         label: const Text('Tambah Sekolah'),

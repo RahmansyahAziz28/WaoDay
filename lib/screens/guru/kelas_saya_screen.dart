@@ -32,8 +32,14 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
       _errorMessage = null;
     });
 
-    final res = await KelasService.instance.getKelas();
+    final futures = await Future.wait([
+      KelasService.instance.getKelas(),
+      if (AppData.instance.guruDashboardData == null)
+        GuruService.instance.getDashboardData(),
+    ]);
     if (!mounted) return;
+
+    final res = futures[0] as ApiResponse<List<Kelas>>;
 
     if (res.success && res.data != null) {
       setState(() {
@@ -52,10 +58,7 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
   }
 
   Future<void> _handleRefresh() async {
-    await Future.wait([
-      _loadKelas(),
-      GuruService.instance.getDashboardData(),
-    ]);
+    await Future.wait([_loadKelas(), GuruService.instance.getDashboardData()]);
   }
 
   void _showKelasOptions(Kelas kelas) {
@@ -71,7 +74,10 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 8,
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -97,7 +103,10 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
               ),
               const Divider(),
               ListTile(
-                leading: const Icon(Icons.edit_outlined, color: AppColors.primary),
+                leading: const Icon(
+                  Icons.edit_outlined,
+                  color: AppColors.primary,
+                ),
                 title: const Text('Edit Kelas'),
                 onTap: () {
                   Navigator.of(bottomSheetContext).pop();
@@ -105,8 +114,14 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.delete_outline, color: AppColors.error),
-                title: const Text('Hapus Kelas', style: TextStyle(color: AppColors.error)),
+                leading: const Icon(
+                  Icons.delete_outline,
+                  color: AppColors.error,
+                ),
+                title: const Text(
+                  'Hapus Kelas',
+                  style: TextStyle(color: AppColors.error),
+                ),
                 onTap: () {
                   Navigator.of(bottomSheetContext).pop();
                   _handleDeleteKelas(kelas);
@@ -135,44 +150,37 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
     if (res.success) {
       scaffoldMessenger.showSnackBar(
         SnackBar(
-          content: Text(res.message.isNotEmpty ? res.message : 'Kelas berhasil dihapus'),
+          content: Text(
+            res.message.isNotEmpty ? res.message : 'Kelas berhasil dihapus',
+          ),
           backgroundColor: AppColors.success,
         ),
       );
       _loadKelas();
     } else {
       scaffoldMessenger.showSnackBar(
-        SnackBar(
-          content: Text(res.message),
-          backgroundColor: AppColors.error,
-        ),
+        SnackBar(content: Text(res.message), backgroundColor: AppColors.error),
       );
     }
   }
 
   void _showKelasFormModal({Kelas? kelas}) {
     final isEdit = kelas != null;
-    final defaultSekolah = AppData.instance.guruDashboardData?.profil.sekolah?.namaSekolah ??
+    final defaultSekolah =
+        AppData.instance.guruDashboardData?.profil.sekolah?.namaSekolah ??
         AppData.instance.currentGuru?.sekolah ??
         '';
-    final defaultSekolahId = AppData.instance.guruDashboardData?.profil.sekolahId ??
+    final defaultSekolahId =
+        AppData.instance.guruDashboardData?.profil.sekolahId ??
         AppData.instance.guruDashboardData?.profil.sekolah?.id ??
         '';
-    final defaultGuruId = AppData.instance.guruDashboardData?.profil.id ??
+    final defaultGuruId =
+        AppData.instance.guruDashboardData?.profil.id ??
         AppData.instance.currentUser?.id ??
         '';
 
     final kodeCtrl = TextEditingController(text: isEdit ? kelas.kodeKelas : '');
     final namaCtrl = TextEditingController(text: isEdit ? kelas.namaKelas : '');
-    final sekolahCtrl = TextEditingController(
-      text: isEdit ? kelas.sekolah : defaultSekolah,
-    );
-    final sekolahIdCtrl = TextEditingController(
-      text: isEdit ? (kelas.sekolahId ?? defaultSekolahId) : defaultSekolahId,
-    );
-    final guruIdCtrl = TextEditingController(
-      text: isEdit ? (kelas.guruId ?? defaultGuruId) : defaultGuruId,
-    );
 
     bool isSubmitting = false;
     String? formError;
@@ -187,6 +195,12 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
       builder: (sheetContext) {
         return StatefulBuilder(
           builder: (context, setModalState) {
+            final displaySekolah = (isEdit && kelas.sekolah.isNotEmpty)
+                ? kelas.sekolah
+                : (defaultSekolah.isNotEmpty
+                      ? defaultSekolah
+                      : 'Sekolah Guru Terdaftar');
+
             return Padding(
               padding: EdgeInsets.only(
                 left: 20,
@@ -226,12 +240,19 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.error_outline, size: 18, color: AppColors.error),
+                            const Icon(
+                              Icons.error_outline,
+                              size: 18,
+                              color: AppColors.error,
+                            ),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
                                 formError!,
-                                style: const TextStyle(fontSize: 13, color: AppColors.error),
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  color: AppColors.error,
+                                ),
                               ),
                             ),
                           ],
@@ -239,6 +260,60 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                       ),
                       const SizedBox(height: 12),
                     ],
+                    // Otomatis Sekolah Guru
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 12,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.background,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: AppColors.border),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Icon(
+                              Icons.apartment_outlined,
+                              size: 20,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Sekolah',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.textSecondary,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  displaySekolah,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.text,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 14),
                     AppInput(
                       label: 'Kode Kelas',
                       hint: 'Contoh: XIPA1, XII-RPL1',
@@ -252,29 +327,6 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                       controller: namaCtrl,
                       icon: Icons.class_outlined,
                     ),
-                    const SizedBox(height: 14),
-                    if (!isEdit)
-                      AppInput(
-                        label: 'Nama Sekolah',
-                        hint: 'Contoh: SMA Negeri 1 Malang',
-                        controller: sekolahCtrl,
-                        icon: Icons.apartment_outlined,
-                      )
-                    else ...[
-                      AppInput(
-                        label: 'Sekolah ID',
-                        hint: 'ID Sekolah',
-                        controller: sekolahIdCtrl,
-                        icon: Icons.apartment_outlined,
-                      ),
-                      const SizedBox(height: 14),
-                      AppInput(
-                        label: 'Guru ID',
-                        hint: 'ID Guru Pengampu',
-                        controller: guruIdCtrl,
-                        icon: Icons.person_outline,
-                      ),
-                    ],
                     const SizedBox(height: 24),
                     AppButton(
                       label: isEdit ? 'Simpan Perubahan' : 'Tambah Kelas',
@@ -282,20 +334,10 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                       onPressed: () async {
                         final kode = kodeCtrl.text.trim();
                         final nama = namaCtrl.text.trim();
-                        final sekolah = sekolahCtrl.text.trim();
-                        final sekolahId = sekolahIdCtrl.text.trim();
-                        final guruId = guruIdCtrl.text.trim();
 
                         if (kode.isEmpty || nama.isEmpty) {
                           setModalState(() {
                             formError = 'Kode kelas dan nama kelas wajib diisi';
-                          });
-                          return;
-                        }
-
-                        if (!isEdit && sekolah.isEmpty) {
-                          setModalState(() {
-                            formError = 'Nama sekolah wajib diisi';
                           });
                           return;
                         }
@@ -305,7 +347,9 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                           formError = null;
                         });
 
-                        final scaffoldMessenger = ScaffoldMessenger.of(this.context);
+                        final scaffoldMessenger = ScaffoldMessenger.of(
+                          this.context,
+                        );
                         ApiResponse<void> res;
 
                         if (isEdit) {
@@ -313,27 +357,39 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                             id: kelas.id,
                             kodeKelas: kode,
                             namaKelas: nama,
-                            sekolahId: sekolahId.isNotEmpty ? sekolahId : defaultSekolahId,
-                            guruId: guruId.isNotEmpty ? guruId : defaultGuruId,
+                            sekolahId: defaultSekolahId.isNotEmpty
+                                ? defaultSekolahId
+                                : (kelas.sekolahId ?? ''),
+                            guruId: defaultGuruId.isNotEmpty
+                                ? defaultGuruId
+                                : (kelas.guruId ?? ''),
+                            namaSekolah: defaultSekolah.isNotEmpty
+                                ? defaultSekolah
+                                : kelas.sekolah,
                           );
                         } else {
                           res = await KelasService.instance.createKelas(
                             kodeKelas: kode,
                             namaKelas: nama,
-                            namaSekolah: sekolah.isNotEmpty ? sekolah : defaultSekolah,
+                            namaSekolah: defaultSekolah,
+                            sekolahId: defaultSekolahId,
                           );
                         }
 
                         if (!mounted) return;
 
                         if (res.success) {
-                          Navigator.of(sheetContext).pop();
+                          if (sheetContext.mounted) {
+                            Navigator.of(sheetContext).pop();
+                          }
                           scaffoldMessenger.showSnackBar(
                             SnackBar(
                               content: Text(
                                 res.message.isNotEmpty
                                     ? res.message
-                                    : (isEdit ? 'Kelas berhasil diperbarui' : 'Kelas berhasil ditambahkan'),
+                                    : (isEdit
+                                          ? 'Kelas berhasil diperbarui'
+                                          : 'Kelas berhasil ditambahkan'),
                               ),
                               backgroundColor: AppColors.success,
                             ),
@@ -371,6 +427,7 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'fab_kelas_saya',
         onPressed: () => _showKelasFormModal(),
         icon: const Icon(Icons.add),
         label: const Text('Tambah Kelas'),
@@ -381,7 +438,9 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
         listenable: AppData.instance,
         builder: (context, _) {
           if (_isLoading && _apiKelasList.isEmpty) {
-            return const Center(child: LoadingState(message: 'Memuat data kelas...'));
+            return const Center(
+              child: LoadingState(message: 'Memuat data kelas...'),
+            );
           }
 
           final data = AppData.instance;
@@ -389,19 +448,22 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
           final fallbackKelasList = _apiKelasList.isNotEmpty
               ? _apiKelasList
               : (dashboardData?.kelas.map((k) {
-                    return Kelas(
-                      id: k.id,
-                      kodeKelas: k.kodeKelas,
-                      namaKelas: k.namaKelas,
-                      sekolah: dashboardData.profil.sekolah?.namaSekolah ?? '-',
-                      guruPengampu: dashboardData.profil.namaGuru,
-                      jumlahSiswa: 0,
-                      daftarSiswa: const [],
-                      sekolahId: dashboardData.profil.sekolahId ?? dashboardData.profil.sekolah?.id,
-                      guruId: dashboardData.profil.id,
-                    );
-                  }).toList() ??
-                  data.kelasForCurrentGuru());
+                      return Kelas(
+                        id: k.id,
+                        kodeKelas: k.kodeKelas,
+                        namaKelas: k.namaKelas,
+                        sekolah:
+                            dashboardData.profil.sekolah?.namaSekolah ?? '-',
+                        guruPengampu: dashboardData.profil.namaGuru,
+                        jumlahSiswa: 0,
+                        daftarSiswa: const [],
+                        sekolahId:
+                            dashboardData.profil.sekolahId ??
+                            dashboardData.profil.sekolah?.id,
+                        guruId: dashboardData.profil.id,
+                      );
+                    }).toList() ??
+                    data.kelasForCurrentGuru());
 
           if (fallbackKelasList.isEmpty) {
             return RefreshIndicator(
@@ -413,7 +475,8 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                   EmptyState(
                     icon: Icons.class_outlined,
                     title: 'Belum ada kelas',
-                    message: _errorMessage ??
+                    message:
+                        _errorMessage ??
                         'Anda belum membuat atau ditugaskan mengampu kelas apapun. Tekan tombol Tambah Kelas untuk membuat kelas baru.',
                   ),
                 ],
@@ -459,7 +522,10 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                               ),
                             ),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 3,
+                              ),
                               decoration: BoxDecoration(
                                 color: AppColors.primary.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(6),
@@ -475,7 +541,11 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                             ),
                             const SizedBox(width: 4),
                             IconButton(
-                              icon: const Icon(Icons.more_vert, size: 20, color: AppColors.textSecondary),
+                              icon: const Icon(
+                                Icons.more_vert,
+                                size: 20,
+                                color: AppColors.textSecondary,
+                              ),
                               onPressed: () => _showKelasOptions(k),
                               padding: EdgeInsets.zero,
                               constraints: const BoxConstraints(),
@@ -486,16 +556,28 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                         if (k.sekolah.isNotEmpty)
                           Text(
                             k.sekolah,
-                            style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: AppColors.textSecondary,
+                            ),
                           ),
                         const Divider(height: 20),
                         Row(
                           children: [
-                            const Icon(Icons.people_outline, size: 18, color: AppColors.textSecondary),
+                            const Icon(
+                              Icons.people_outline,
+                              size: 18,
+                              color: AppColors.textSecondary,
+                            ),
                             const SizedBox(width: 6),
                             Text(
-                              k.jumlahSiswa > 0 ? '${k.jumlahSiswa} siswa' : 'Lihat siswa',
-                              style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
+                              k.jumlahSiswa > 0
+                                  ? '${k.jumlahSiswa} siswa'
+                                  : 'Lihat siswa',
+                              style: const TextStyle(
+                                fontSize: 13,
+                                color: AppColors.textSecondary,
+                              ),
                             ),
                             const Spacer(),
                             const Text(
@@ -507,7 +589,11 @@ class _KelasSayaScreenState extends State<KelasSayaScreen> {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Icon(Icons.chevron_right, size: 18, color: AppColors.primary),
+                            const Icon(
+                              Icons.chevron_right,
+                              size: 18,
+                              color: AppColors.primary,
+                            ),
                           ],
                         ),
                       ],

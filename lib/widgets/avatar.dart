@@ -31,7 +31,7 @@ class AppAvatar extends StatelessWidget {
       height: size,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: filled ? backgroundColor : AppColors.primary.withOpacity(0.12),
+        color: filled ? backgroundColor : AppColors.primary.withValues(alpha: 0.12),
         shape: BoxShape.circle,
       ),
       child: Text(

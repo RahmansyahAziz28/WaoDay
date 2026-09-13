@@ -27,7 +27,6 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
   List<Sekolah> _sekolahList = [];
   List<Guru> _guruList = [];
   int _totalKelas = 0;
-  int _totalSiswa = 0;
   String? _errorMessage;
 
   @override
@@ -80,7 +79,8 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
   @override
   Widget build(BuildContext context) {
     final user = AppData.instance.currentUser;
-    final userName = user?.name ?? user?.email.split('@').first ?? 'Administrator';
+    final userName =
+        user?.name ?? user?.email.split('@').first ?? 'Administrator';
 
     return Scaffold(
       appBar: AppBar(
@@ -162,7 +162,10 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                   ),
                   const SizedBox(height: 16),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(12),
@@ -170,7 +173,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.check_circle_outline, color: Colors.white, size: 16),
+                        Icon(
+                          Icons.check_circle_outline,
+                          color: Colors.white,
+                          size: 16,
+                        ),
                         SizedBox(width: 6),
                         Text(
                           'Sistem Terhubung ke Server',
@@ -194,16 +201,25 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                 decoration: BoxDecoration(
                   color: AppColors.error.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
+                  border: Border.all(
+                    color: AppColors.error.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.error_outline, color: AppColors.error, size: 20),
+                    const Icon(
+                      Icons.error_outline,
+                      color: AppColors.error,
+                      size: 20,
+                    ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
                         _errorMessage!,
-                        style: const TextStyle(color: AppColors.error, fontSize: 13),
+                        style: const TextStyle(
+                          color: AppColors.error,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ],
@@ -277,7 +293,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                     onTap: widget.onNavigateToSekolah,
                     child: const Row(
                       children: [
-                        Icon(Icons.add_business_rounded, color: AppColors.primary, size: 24),
+                        Icon(
+                          Icons.add_business_rounded,
+                          color: AppColors.primary,
+                          size: 24,
+                        ),
                         SizedBox(width: 10),
                         Expanded(
                           child: Text(
@@ -289,7 +309,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                             ),
                           ),
                         ),
-                        Icon(Icons.chevron_right, color: AppColors.textSecondary, size: 18),
+                        Icon(
+                          Icons.chevron_right,
+                          color: AppColors.textSecondary,
+                          size: 18,
+                        ),
                       ],
                     ),
                   ),
@@ -300,7 +324,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                     onTap: widget.onNavigateToGuru,
                     child: const Row(
                       children: [
-                        Icon(Icons.person_add_alt_1_rounded, color: AppColors.secondary, size: 24),
+                        Icon(
+                          Icons.person_add_alt_1_rounded,
+                          color: AppColors.secondary,
+                          size: 24,
+                        ),
                         SizedBox(width: 10),
                         Expanded(
                           child: Text(
@@ -312,7 +340,11 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                             ),
                           ),
                         ),
-                        Icon(Icons.chevron_right, color: AppColors.textSecondary, size: 18),
+                        Icon(
+                          Icons.chevron_right,
+                          color: AppColors.textSecondary,
+                          size: 18,
+                        ),
                       ],
                     ),
                   ),
@@ -347,55 +379,62 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
               const EmptyState(
                 icon: Icons.apartment_outlined,
                 title: 'Belum ada sekolah',
-                message: 'Data sekolah akan tampil di sini setelah ditambahkan.',
+                message:
+                    'Data sekolah akan tampil di sini setelah ditambahkan.',
               )
             else
-              ..._sekolahList.take(3).map(
-                (s) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: AppCard(
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 42,
-                          height: 42,
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(Icons.school, color: AppColors.primary, size: 22),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                s.namaSekolah,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.text,
-                                ),
+              ..._sekolahList
+                  .take(3)
+                  .map(
+                    (s) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: AppCard(
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 42,
+                              height: 42,
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                              if (s.alamat != null && s.alamat!.isNotEmpty)
-                                Text(
-                                  s.alamat!,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: AppColors.textSecondary,
+                              child: const Icon(
+                                Icons.school,
+                                color: AppColors.primary,
+                                size: 22,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    s.namaSekolah,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.text,
+                                    ),
                                   ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                            ],
-                          ),
+                                  if (s.alamat != null && s.alamat!.isNotEmpty)
+                                    Text(
+                                      s.alamat!,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: AppColors.textSecondary,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
-              ),
           ],
         ),
       ),
