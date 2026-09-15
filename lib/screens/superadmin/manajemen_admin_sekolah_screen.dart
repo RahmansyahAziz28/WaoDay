@@ -28,7 +28,6 @@ class _ManajemenAdminSekolahScreenState
   List<AdminSekolah> _admins = [];
   List<Sekolah> _sekolahList = [];
   bool _isLoading = false;
-  bool _isLoadingSekolah = false;
   String _searchQuery = '';
   String? _selectedSekolahId;
   String? _errorMessage;
@@ -68,21 +67,15 @@ class _ManajemenAdminSekolahScreenState
   }
 
   Future<void> _loadSekolahList() async {
-    setState(() => _isLoadingSekolah = true);
     try {
       final res = await AdminService.instance.getSekolahList();
       if (!mounted) return;
       if (res.success && res.data != null) {
         setState(() {
           _sekolahList = res.data!;
-          _isLoadingSekolah = false;
         });
-      } else {
-        setState(() => _isLoadingSekolah = false);
       }
-    } catch (_) {
-      if (mounted) setState(() => _isLoadingSekolah = false);
-    }
+    } catch (_) {}
   }
 
   Future<void> _loadAdmins() async {
@@ -134,42 +127,64 @@ class _ManajemenAdminSekolahScreenState
     bool isSubmitting = false;
     String? submitError;
 
-    await showDialog(
+    await showModalBottomSheet(
       context: context,
-      barrierDismissible: false,
-      builder: (dialogContext) {
-        return StatefulBuilder(
-          builder: (ctx, setDialogState) {
-            return AlertDialog(
-              title: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppColors.secondary.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(
-                      Icons.person_add_rounded,
-                      color: AppColors.secondary,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  const Text('Tambah Admin Sekolah'),
-                ],
-              ),
-              content: SingleChildScrollView(
-                child: Form(
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (sheetContext) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(sheetContext).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+            child: StatefulBuilder(
+              builder: (ctx, setDialogState) {
+                return Form(
                   key: formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: AppColors.secondary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Icon(
+                              Icons.person_add_rounded,
+                              color: AppColors.secondary,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          const Text(
+                            'Tambah Admin Sekolah',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.text,
+                            ),
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.of(sheetContext).pop(),
+                          ),
+                        ],
+                      ),
+                      const Divider(height: 24),
                       if (submitError != null) ...[
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: AppColors.error.withOpacity(0.1),
+                            color: AppColors.error.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Row(
@@ -197,7 +212,7 @@ class _ManajemenAdminSekolahScreenState
 
                       // Pilih Sekolah Dropdown
                       DropdownButtonFormField<String>(
-                        value: selectedSekolahId,
+                        initialValue: selectedSekolahId,
                         decoration: const InputDecoration(
                           labelText: 'Pilih Sekolah Penugasan *',
                           prefixIcon: Icon(Icons.school_rounded),
@@ -212,8 +227,9 @@ class _ManajemenAdminSekolahScreenState
                           );
                         }).toList(),
                         validator: (v) {
-                          if (v == null || v.isEmpty)
+                          if (v == null || v.isEmpty) {
                             return 'Silakan pilih sekolah';
+                          }
                           return null;
                         },
                         onChanged: (val) {
@@ -231,8 +247,9 @@ class _ManajemenAdminSekolahScreenState
                           prefixIcon: Icon(Icons.badge_outlined),
                         ),
                         validator: (v) {
-                          if (v == null || v.trim().isEmpty)
+                          if (v == null || v.trim().isEmpty) {
                             return 'Nama admin wajib diisi';
+                          }
                           return null;
                         },
                       ),
@@ -299,79 +316,82 @@ class _ManajemenAdminSekolahScreenState
                           prefixIcon: Icon(Icons.phone_outlined),
                         ),
                       ),
+                      const SizedBox(height: 24),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppButton(
+                              label: 'Batal',
+                              variant: AppButtonVariant.outlined,
+                              onPressed: isSubmitting
+                                  ? null
+                                  : () => Navigator.of(sheetContext).pop(),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: AppButton(
+                              label: 'Simpan',
+                              isLoading: isSubmitting,
+                              onPressed: isSubmitting
+                                  ? null
+                                  : () async {
+                                      if (!formKey.currentState!.validate()) {
+                                        return;
+                                      }
+
+                                      final school = _sekolahList.firstWhere(
+                                        (s) => s.id == selectedSekolahId,
+                                        orElse: () => Sekolah(
+                                          id: selectedSekolahId ?? '',
+                                          nama: 'Sekolah Terpilih',
+                                        ),
+                                      );
+
+                                      setDialogState(() {
+                                        isSubmitting = true;
+                                        submitError = null;
+                                      });
+
+                                      final res = await _adminService.createAdmin(
+                                        nama: namaController.text.trim(),
+                                        email: emailController.text.trim(),
+                                        password: passwordController.text,
+                                        sekolahId: school.id,
+                                        sekolahNama: school.nama,
+                                        telepon: teleponController.text.trim(),
+                                      );
+
+                                      if (!sheetContext.mounted) return;
+
+                                      if (res.success) {
+                                        Navigator.of(sheetContext).pop();
+                                        if (mounted) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text(res.message),
+                                              backgroundColor: AppColors.success,
+                                            ),
+                                          );
+                                          _loadAdmins();
+                                        }
+                                      } else {
+                                        setDialogState(() {
+                                          isSubmitting = false;
+                                          submitError = res.message;
+                                        });
+                                      }
+                                    },
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: isSubmitting
-                      ? null
-                      : () => Navigator.of(dialogContext).pop(),
-                  child: const Text('Batal'),
-                ),
-                ElevatedButton(
-                  onPressed: isSubmitting
-                      ? null
-                      : () async {
-                          if (!formKey.currentState!.validate()) return;
-
-                          final school = _sekolahList.firstWhere(
-                            (s) => s.id == selectedSekolahId,
-                            orElse: () => Sekolah(
-                              id: selectedSekolahId ?? '',
-                              nama: 'Sekolah Terpilih',
-                            ),
-                          );
-
-                          setDialogState(() {
-                            isSubmitting = true;
-                            submitError = null;
-                          });
-
-                          final res = await _adminService.createAdmin(
-                            nama: namaController.text.trim(),
-                            email: emailController.text.trim(),
-                            password: passwordController.text,
-                            sekolahId: school.id,
-                            sekolahNama: school.nama,
-                            telepon: teleponController.text.trim(),
-                          );
-
-                          if (!dialogContext.mounted) return;
-
-                          if (res.success) {
-                            Navigator.of(dialogContext).pop();
-                            if (mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(res.message),
-                                  backgroundColor: AppColors.success,
-                                ),
-                              );
-                              _loadAdmins();
-                            }
-                          } else {
-                            setDialogState(() {
-                              isSubmitting = false;
-                              submitError = res.message;
-                            });
-                          }
-                        },
-                  child: isSubmitting
-                      ? const SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Text('Simpan'),
-                ),
-              ],
-            );
-          },
+                );
+              },
+            ),
+          ),
         );
       },
     );
@@ -396,37 +416,59 @@ class _ManajemenAdminSekolahScreenState
     bool isSubmitting = false;
     String? submitError;
 
-    await showDialog(
+    await showModalBottomSheet(
       context: context,
-      barrierDismissible: false,
-      builder: (dialogContext) {
-        return StatefulBuilder(
-          builder: (ctx, setDialogState) {
-            return AlertDialog(
-              title: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppColors.secondary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(
-                      Icons.manage_accounts_rounded,
-                      color: AppColors.secondary,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  const Text('Edit Admin Sekolah'),
-                ],
-              ),
-              content: SingleChildScrollView(
-                child: Form(
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (sheetContext) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(sheetContext).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+            child: StatefulBuilder(
+              builder: (ctx, setDialogState) {
+                return Form(
                   key: formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: AppColors.secondary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Icon(
+                              Icons.manage_accounts_rounded,
+                              color: AppColors.secondary,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          const Text(
+                            'Edit Admin Sekolah',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.text,
+                            ),
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.of(sheetContext).pop(),
+                          ),
+                        ],
+                      ),
+                      const Divider(height: 24),
                       if (submitError != null) ...[
                         Container(
                           padding: const EdgeInsets.all(10),
@@ -459,10 +501,10 @@ class _ManajemenAdminSekolahScreenState
 
                       // Pilih Sekolah Dropdown
                       DropdownButtonFormField<String>(
-                        value:
+                        initialValue:
                             _sekolahList.any((s) => s.id == selectedSekolahId)
-                            ? selectedSekolahId
-                            : null,
+                                ? selectedSekolahId
+                                : null,
                         decoration: const InputDecoration(
                           labelText: 'Sekolah Penugasan *',
                           prefixIcon: Icon(Icons.school_rounded),
@@ -477,8 +519,9 @@ class _ManajemenAdminSekolahScreenState
                           );
                         }).toList(),
                         validator: (v) {
-                          if (v == null || v.isEmpty)
+                          if (v == null || v.isEmpty) {
                             return 'Silakan pilih sekolah';
+                          }
                           return null;
                         },
                         onChanged: (val) {
@@ -495,8 +538,9 @@ class _ManajemenAdminSekolahScreenState
                           prefixIcon: Icon(Icons.badge_outlined),
                         ),
                         validator: (v) {
-                          if (v == null || v.trim().isEmpty)
+                          if (v == null || v.trim().isEmpty) {
                             return 'Nama admin wajib diisi';
+                          }
                           return null;
                         },
                       ),
@@ -511,10 +555,12 @@ class _ManajemenAdminSekolahScreenState
                           prefixIcon: Icon(Icons.email_outlined),
                         ),
                         validator: (v) {
-                          if (v == null || v.trim().isEmpty)
+                          if (v == null || v.trim().isEmpty) {
                             return 'Email wajib diisi';
-                          if (!v.contains('@'))
+                          }
+                          if (!v.contains('@')) {
                             return 'Format email tidak valid';
+                          }
                           return null;
                         },
                       ),
@@ -581,83 +627,93 @@ class _ManajemenAdminSekolahScreenState
                           setDialogState(() => isActive = val);
                         },
                       ),
+                      const SizedBox(height: 24),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppButton(
+                              label: 'Batal',
+                              variant: AppButtonVariant.outlined,
+                              onPressed: isSubmitting
+                                  ? null
+                                  : () => Navigator.of(sheetContext).pop(),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: AppButton(
+                              label: 'Perbarui',
+                              isLoading: isSubmitting,
+                              onPressed: isSubmitting
+                                  ? null
+                                  : () async {
+                                      if (!formKey.currentState!.validate()) {
+                                        return;
+                                      }
+
+                                      final school = _sekolahList.firstWhere(
+                                        (s) => s.id == selectedSekolahId,
+                                        orElse: () => Sekolah(
+                                          id: selectedSekolahId ??
+                                              admin.sekolahId,
+                                          nama: admin.sekolahNama,
+                                        ),
+                                      );
+
+                                      setDialogState(() {
+                                        isSubmitting = true;
+                                        submitError = null;
+                                      });
+
+                                      final res = await _adminService
+                                          .updateAdmin(
+                                            admin.id,
+                                            nama: namaController.text.trim(),
+                                            email: emailController.text.trim(),
+                                            password: passwordController
+                                                    .text
+                                                    .isNotEmpty
+                                                ? passwordController.text
+                                                : null,
+                                            sekolahId: school.id,
+                                            sekolahNama: school.nama,
+                                            telepon:
+                                                teleponController.text.trim(),
+                                            isActive: isActive,
+                                          );
+
+                                      if (!sheetContext.mounted) return;
+
+                                      if (res.success) {
+                                        Navigator.of(sheetContext).pop();
+                                        if (mounted) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(res.message),
+                                                  backgroundColor:
+                                                      AppColors.success,
+                                                ),
+                                              );
+                                          _loadAdmins();
+                                        }
+                                      } else {
+                                        setDialogState(() {
+                                          isSubmitting = false;
+                                          submitError = res.message;
+                                        });
+                                      }
+                                    },
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: isSubmitting
-                      ? null
-                      : () => Navigator.of(dialogContext).pop(),
-                  child: const Text('Batal'),
-                ),
-                ElevatedButton(
-                  onPressed: isSubmitting
-                      ? null
-                      : () async {
-                          if (!formKey.currentState!.validate()) return;
-
-                          final school = _sekolahList.firstWhere(
-                            (s) => s.id == selectedSekolahId,
-                            orElse: () => Sekolah(
-                              id: selectedSekolahId ?? admin.sekolahId,
-                              nama: admin.sekolahNama,
-                            ),
-                          );
-
-                          setDialogState(() {
-                            isSubmitting = true;
-                            submitError = null;
-                          });
-
-                          final res = await _adminService.updateAdmin(
-                            admin.id,
-                            nama: namaController.text.trim(),
-                            email: emailController.text.trim(),
-                            password: passwordController.text.isNotEmpty
-                                ? passwordController.text
-                                : null,
-                            sekolahId: school.id,
-                            sekolahNama: school.nama,
-                            telepon: teleponController.text.trim(),
-                            isActive: isActive,
-                          );
-
-                          if (!dialogContext.mounted) return;
-
-                          if (res.success) {
-                            Navigator.of(dialogContext).pop();
-                            if (mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(res.message),
-                                  backgroundColor: AppColors.success,
-                                ),
-                              );
-                              _loadAdmins();
-                            }
-                          } else {
-                            setDialogState(() {
-                              isSubmitting = false;
-                              submitError = res.message;
-                            });
-                          }
-                        },
-                  child: isSubmitting
-                      ? const SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Text('Perbarui'),
-                ),
-              ],
-            );
-          },
+                );
+              },
+            ),
+          ),
         );
       },
     );
@@ -705,6 +761,7 @@ class _ManajemenAdminSekolahScreenState
     final admins = _filteredAdmins;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: RefreshIndicator(
         onRefresh: () async {
           await _loadSekolahList();
@@ -724,6 +781,7 @@ class _ManajemenAdminSekolahScreenState
                       children: [
                         Expanded(
                           child: DropdownButtonFormField<String>(
+                            // ignore: deprecated_member_use
                             value: _selectedSekolahId ?? 'all',
                             isExpanded: true,
                             decoration: InputDecoration(
@@ -872,12 +930,14 @@ class _ManajemenAdminSekolahScreenState
             // Admin List
             if (_isLoading)
               const SliverFillRemaining(
+                hasScrollBody: false,
                 child: Center(
                   child: LoadingState(message: 'Memuat data admin...'),
                 ),
               )
             else if (_errorMessage != null)
               SliverFillRemaining(
+                hasScrollBody: false,
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(24),
@@ -910,6 +970,7 @@ class _ManajemenAdminSekolahScreenState
               )
             else if (admins.isEmpty)
               SliverFillRemaining(
+                hasScrollBody: false,
                 child: Center(
                   child: EmptyState(
                     title: _searchQuery.isNotEmpty
@@ -959,7 +1020,7 @@ class _ManajemenAdminSekolahScreenState
                 CircleAvatar(
                   radius: 22,
                   backgroundColor: admin.isActive
-                      ? AppColors.secondary.withOpacity(0.12)
+                      ? AppColors.secondary.withValues(alpha: 0.12)
                       : Colors.grey.shade200,
                   child: Text(
                     admin.nama.isNotEmpty ? admin.nama[0].toUpperCase() : 'A',

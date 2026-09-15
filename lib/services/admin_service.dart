@@ -494,13 +494,14 @@ class AdminService {
   }
 
   /// POST /api/guru
-  /// Body: { "nama_guru": "...", "nim": "...", "nama_sekolah": "...", "kode_kelas": "..." }
+  /// Body: { "nama_guru": "...", "nim": "...", "nama_sekolah": "...", ["kode_kelas": "..."], ["sekolah_id": "..."] }
   /// Header: Content-Type: application/json, Authorization: Bearer [token]
   Future<ApiResponse<void>> createGuru({
     required String namaGuru,
     required String nim,
     required String namaSekolah,
-    required String kodeKelas,
+    String? kodeKelas,
+    String? sekolahId,
   }) async {
     final token = await _getToken();
     if (token == null || token.isEmpty) {
@@ -511,15 +512,22 @@ class AdminService {
     }
 
     try {
+      final Map<String, dynamic> bodyMap = {
+        'nama_guru': namaGuru.trim(),
+        'nim': nim.trim(),
+        'nama_sekolah': namaSekolah.trim(),
+      };
+      if (kodeKelas != null && kodeKelas.trim().isNotEmpty) {
+        bodyMap['kode_kelas'] = kodeKelas.trim();
+      }
+      if (sekolahId != null && sekolahId.trim().isNotEmpty) {
+        bodyMap['sekolah_id'] = sekolahId.trim();
+      }
+
       final response = await ApiClient.instance.post(
         ApiConfig.guruBaseUri,
         token: token,
-        body: jsonEncode({
-          'nama_guru': namaGuru.trim(),
-          'nim': nim.trim(),
-          'nama_sekolah': namaSekolah.trim(),
-          'kode_kelas': kodeKelas.trim(),
-        }),
+        body: jsonEncode(bodyMap),
       );
 
       if (response.statusCode == 401) {

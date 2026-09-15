@@ -142,7 +142,7 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
     }).toList();
   }
 
-  // ── FORM DIALOGS ─────────────────────────────────────────────────────────────
+  // ── FORM BOTTOM SHEETS ─────────────────────────────────────────────────────────────
 
   Future<void> _showAddSekolahDialog() async {
     final formKey = GlobalKey<FormState>();
@@ -151,39 +151,61 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
     bool isSubmitting = false;
     String? submitError;
 
-    await showDialog(
+    await showModalBottomSheet(
       context: context,
-      barrierDismissible: false,
-      builder: (dialogContext) {
-        return StatefulBuilder(
-          builder: (ctx, setDialogState) {
-            return AlertDialog(
-              title: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(Icons.school_rounded, color: AppColors.primary),
-                  ),
-                  const SizedBox(width: 12),
-                  const Text('Tambah Sekolah'),
-                ],
-              ),
-              content: SingleChildScrollView(
-                child: Form(
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (sheetContext) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(sheetContext).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+            child: StatefulBuilder(
+              builder: (ctx, setDialogState) {
+                return Form(
                   key: formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Icon(Icons.school_rounded, color: AppColors.primary),
+                          ),
+                          const SizedBox(width: 12),
+                          const Text(
+                            'Tambah Sekolah',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.text,
+                            ),
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.of(sheetContext).pop(),
+                          ),
+                        ],
+                      ),
+                      const Divider(height: 24),
                       if (submitError != null) ...[
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: AppColors.error.withOpacity(0.1),
+                            color: AppColors.error.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Row(
@@ -232,61 +254,65 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
                           return null;
                         },
                       ),
+                      const SizedBox(height: 24),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppButton(
+                              label: 'Batal',
+                              variant: AppButtonVariant.outlined,
+                              onPressed: isSubmitting ? null : () => Navigator.of(sheetContext).pop(),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: AppButton(
+                              label: 'Simpan',
+                              isLoading: isSubmitting,
+                              onPressed: isSubmitting
+                                  ? null
+                                  : () async {
+                                      if (!formKey.currentState!.validate()) return;
+                                      setDialogState(() {
+                                        isSubmitting = true;
+                                        submitError = null;
+                                      });
+
+                                      final res = await AdminService.instance.createSekolah(
+                                        namaSekolah: namaController.text.trim(),
+                                        alamat: alamatController.text.trim(),
+                                      );
+
+                                      if (!sheetContext.mounted) return;
+
+                                      if (res.success) {
+                                        Navigator.of(sheetContext).pop();
+                                        if (mounted) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text(res.message),
+                                              backgroundColor: AppColors.success,
+                                            ),
+                                          );
+                                          _loadData(isRefresh: true);
+                                        }
+                                      } else {
+                                        setDialogState(() {
+                                          isSubmitting = false;
+                                          submitError = res.message;
+                                        });
+                                      }
+                                    },
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: isSubmitting ? null : () => Navigator.of(dialogContext).pop(),
-                  child: const Text('Batal'),
-                ),
-                ElevatedButton(
-                  onPressed: isSubmitting
-                      ? null
-                      : () async {
-                          if (!formKey.currentState!.validate()) return;
-                          setDialogState(() {
-                            isSubmitting = true;
-                            submitError = null;
-                          });
-
-                          final res = await AdminService.instance.createSekolah(
-                            namaSekolah: namaController.text.trim(),
-                            alamat: alamatController.text.trim(),
-                          );
-
-                          if (!dialogContext.mounted) return;
-
-                          if (res.success) {
-                            Navigator.of(dialogContext).pop();
-                            if (mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(res.message),
-                                  backgroundColor: AppColors.success,
-                                ),
-                              );
-                              _loadData(isRefresh: true);
-                            }
-                          } else {
-                            setDialogState(() {
-                              isSubmitting = false;
-                              submitError = res.message;
-                            });
-                          }
-                        },
-                  child: isSubmitting
-                      ? const SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                        )
-                      : const Text('Simpan'),
-                ),
-              ],
-            );
-          },
+                );
+              },
+            ),
+          ),
         );
       },
     );
@@ -302,39 +328,61 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
     bool isSubmitting = false;
     String? submitError;
 
-    await showDialog(
+    await showModalBottomSheet(
       context: context,
-      barrierDismissible: false,
-      builder: (dialogContext) {
-        return StatefulBuilder(
-          builder: (ctx, setDialogState) {
-            return AlertDialog(
-              title: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(Icons.edit_rounded, color: AppColors.primary),
-                  ),
-                  const SizedBox(width: 12),
-                  const Text('Edit Sekolah'),
-                ],
-              ),
-              content: SingleChildScrollView(
-                child: Form(
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (sheetContext) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(sheetContext).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+            child: StatefulBuilder(
+              builder: (ctx, setDialogState) {
+                return Form(
                   key: formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: AppColors.primary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Icon(Icons.edit_rounded, color: AppColors.primary),
+                          ),
+                          const SizedBox(width: 12),
+                          const Text(
+                            'Edit Sekolah',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.text,
+                            ),
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.of(sheetContext).pop(),
+                          ),
+                        ],
+                      ),
+                      const Divider(height: 24),
                       if (submitError != null) ...[
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: AppColors.error.withOpacity(0.1),
+                            color: AppColors.error.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Row(
@@ -381,62 +429,66 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
                           return null;
                         },
                       ),
+                      const SizedBox(height: 24),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppButton(
+                              label: 'Batal',
+                              variant: AppButtonVariant.outlined,
+                              onPressed: isSubmitting ? null : () => Navigator.of(sheetContext).pop(),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: AppButton(
+                              label: 'Perbarui',
+                              isLoading: isSubmitting,
+                              onPressed: isSubmitting
+                                  ? null
+                                  : () async {
+                                      if (!formKey.currentState!.validate()) return;
+                                      setDialogState(() {
+                                        isSubmitting = true;
+                                        submitError = null;
+                                      });
+
+                                      final res = await AdminService.instance.updateSekolah(
+                                        sekolah.id,
+                                        namaSekolah: namaController.text.trim(),
+                                        alamat: alamatController.text.trim(),
+                                      );
+
+                                      if (!sheetContext.mounted) return;
+
+                                      if (res.success) {
+                                        Navigator.of(sheetContext).pop();
+                                        if (mounted) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text(res.message),
+                                              backgroundColor: AppColors.success,
+                                            ),
+                                          );
+                                          _loadData(isRefresh: true);
+                                        }
+                                      } else {
+                                        setDialogState(() {
+                                          isSubmitting = false;
+                                          submitError = res.message;
+                                        });
+                                      }
+                                    },
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: isSubmitting ? null : () => Navigator.of(dialogContext).pop(),
-                  child: const Text('Batal'),
-                ),
-                ElevatedButton(
-                  onPressed: isSubmitting
-                      ? null
-                      : () async {
-                          if (!formKey.currentState!.validate()) return;
-                          setDialogState(() {
-                            isSubmitting = true;
-                            submitError = null;
-                          });
-
-                          final res = await AdminService.instance.updateSekolah(
-                            sekolah.id,
-                            namaSekolah: namaController.text.trim(),
-                            alamat: alamatController.text.trim(),
-                          );
-
-                          if (!dialogContext.mounted) return;
-
-                          if (res.success) {
-                            Navigator.of(dialogContext).pop();
-                            if (mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(res.message),
-                                  backgroundColor: AppColors.success,
-                                ),
-                              );
-                              _loadData(isRefresh: true);
-                            }
-                          } else {
-                            setDialogState(() {
-                              isSubmitting = false;
-                              submitError = res.message;
-                            });
-                          }
-                        },
-                  child: isSubmitting
-                      ? const SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                        )
-                      : const Text('Perbarui'),
-                ),
-              ],
-            );
-          },
+                );
+              },
+            ),
+          ),
         );
       },
     );
@@ -502,6 +554,7 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
     final filtered = _filteredList;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: RefreshIndicator(
         onRefresh: () => _loadData(isRefresh: true),
         color: AppColors.primary,
@@ -571,7 +624,7 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                           decoration: BoxDecoration(
-                            color: AppColors.primary.withOpacity(0.08),
+                            color: AppColors.primary.withValues(alpha: 0.08),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
@@ -584,7 +637,7 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
                           ),
                         ),
                         if (_searchQuery.isNotEmpty) ...[
-                          const SizedBox(width: 8),
+                           const SizedBox(width: 8),
                           Text(
                             '(${filtered.length} hasil ditemukan)',
                             style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
@@ -600,12 +653,14 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
             // Content
             if (_isLoading && _sekolahList.isEmpty)
               const SliverFillRemaining(
+                hasScrollBody: false,
                 child: Center(
                   child: LoadingState(message: 'Memuat data sekolah...'),
                 ),
               )
             else if (_errorMessage != null && _sekolahList.isEmpty)
               SliverFillRemaining(
+                hasScrollBody: false,
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(24),
@@ -632,6 +687,7 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
               )
             else if (filtered.isEmpty)
               SliverFillRemaining(
+                hasScrollBody: false,
                 child: Center(
                   child: EmptyState(
                     title: _searchQuery.isNotEmpty ? 'Sekolah Tidak Ditemukan' : 'Belum Ada Data Sekolah',
@@ -815,9 +871,9 @@ class _ManajemenSekolahScreenState extends State<ManajemenSekolahScreen> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
-                      color: AppColors.secondary.withOpacity(0.08),
+                      color: AppColors.secondary.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: AppColors.secondary.withOpacity(0.2)),
+                      border: Border.all(color: AppColors.secondary.withValues(alpha: 0.2)),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,

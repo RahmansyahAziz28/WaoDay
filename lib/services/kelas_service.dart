@@ -142,12 +142,14 @@ class KelasService {
   }
 
   /// POST /api/kelas
-  /// Body: { kode_kelas, nama_kelas, nama_sekolah, [sekolah_id] }
+  /// Body: { kode_kelas, nama_kelas, nama_sekolah, [sekolah_id], [guru_id], [tingkat] }
   Future<ApiResponse<void>> createKelas({
     required String kodeKelas,
     required String namaKelas,
     String? namaSekolah,
     String? sekolahId,
+    String? guruId,
+    int? tingkat,
   }) async {
     final token = await _getToken();
     if (token == null || token.isEmpty) {
@@ -177,6 +179,12 @@ class KelasService {
       }
       if (effectiveSekolahId != null && effectiveSekolahId.isNotEmpty) {
         bodyMap['sekolah_id'] = effectiveSekolahId;
+      }
+      if (guruId != null && guruId.trim().isNotEmpty) {
+        bodyMap['guru_id'] = guruId.trim();
+      }
+      if (tingkat != null) {
+        bodyMap['tingkat'] = tingkat;
       }
 
       final response = await ApiClient.instance.post(
@@ -218,7 +226,7 @@ class KelasService {
   }
 
   /// PUT /api/kelas/:id
-  /// Body: { kode_kelas, nama_kelas, sekolah_id, guru_id, [nama_sekolah] }
+  /// Body: { kode_kelas, nama_kelas, sekolah_id, guru_id, [nama_sekolah], [tingkat] }
   Future<ApiResponse<void>> updateKelas({
     required String id,
     required String kodeKelas,
@@ -226,6 +234,7 @@ class KelasService {
     String? sekolahId,
     String? guruId,
     String? namaSekolah,
+    int? tingkat,
   }) async {
     final token = await _getToken();
     if (token == null || token.isEmpty) {
@@ -264,6 +273,9 @@ class KelasService {
       }
       if (effectiveNamaSekolah.isNotEmpty) {
         bodyMap['nama_sekolah'] = effectiveNamaSekolah;
+      }
+      if (tingkat != null) {
+        bodyMap['tingkat'] = tingkat;
       }
 
       final response = await ApiClient.instance.put(

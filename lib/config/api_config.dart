@@ -1,7 +1,8 @@
 class ApiConfig {
   ApiConfig._();
 
-  static const String baseUrl = 'http://localhost:3000';
+  // Ganti ke IP Wi-Fi laptop agar HP fisik tidak putus koneksi saat kabel/adb terlepas
+  static const String baseUrl = 'https://www.baseproject.my.id';
 
   static const String loginEndpoint = '/api/auth/login';
   static const String logoutEndpoint = '/api/auth/logout';
@@ -39,10 +40,14 @@ class ApiConfig {
   static Uri kelasDetailUri(String id) => Uri.parse('$baseUrl/api/kelas/$id');
   static Uri kelasSiswaUri(String id) =>
       Uri.parse('$baseUrl/api/kelas/$id/siswa');
+  static Uri kelasNilaiSubBabUri(String id, {int kkm = 70}) =>
+      uri('/api/kelas/$id/nilai-sub-bab', {'kkm': kkm});
 
   // ── Siswa ──────────────────────────────────────────────────────────────────
   static Uri get siswaUri => Uri.parse('$baseUrl/api/siswa');
   static Uri siswaDetailUri(String id) => Uri.parse('$baseUrl/api/siswa/$id');
+  static Uri siswaNilaiSubBabUri(String id, {int kkm = 70}) =>
+      uri('/api/siswa/$id/nilai-sub-bab', {'kkm': kkm});
 
   // ── Admin ──────────────────────────────────────────────────────────────────
   static Uri get adminUri => Uri.parse('$baseUrl/api/admin');
@@ -74,8 +79,14 @@ class ApiConfig {
 
   static Uri gameTokenNilaiUri(String tokenId, {int kkm = 70}) =>
       uri('/api/game/token/$tokenId/nilai', {'kkm': kkm});
+  static Uri gameTokenExportExcelUri(String tokenId, {int kkm = 70}) =>
+      uri('/api/game/token/$tokenId/export-excel', {'kkm': kkm});
 
-  static Uri materiUri({int? tingkatKelas, int? semester, String? mataPelajaran}) {
+  static Uri materiUri({
+    int? tingkatKelas,
+    int? semester,
+    String? mataPelajaran,
+  }) {
     final query = <String, dynamic>{};
     if (tingkatKelas != null) query['tingkat_kelas'] = tingkatKelas;
     if (semester != null) query['semester'] = semester;

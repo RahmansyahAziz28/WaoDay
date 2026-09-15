@@ -17,6 +17,24 @@ class UserModel {
     this.profil,
   });
 
+  String get namaSekolah {
+    if (sekolah is Map) {
+      return (sekolah as Map)['nama_sekolah']?.toString() ?? '';
+    }
+    if (sekolah is String) return sekolah as String;
+    return '';
+  }
+
+  String get sekolahId {
+    if (sekolah is Map) {
+      return (sekolah as Map)['id']?.toString() ?? '';
+    }
+    if (profil != null && profil!['sekolah_id'] != null) {
+      return profil!['sekolah_id'].toString();
+    }
+    return '';
+  }
+
   factory UserModel.fromJson(Map<String, dynamic> json) {
     final profilMap = json['profil'] is Map
         ? Map<String, dynamic>.from(json['profil'] as Map)

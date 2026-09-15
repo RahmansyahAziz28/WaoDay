@@ -7,3 +7,4 @@ export 'sekolah.dart';
 export 'siswa.dart';
 export 'materi.dart';
 export 'game_token.dart';
+export 'nilai_sub_bab.dart';

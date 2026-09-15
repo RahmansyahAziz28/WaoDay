@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:open_filex/open_filex.dart';
 
 import '../../data/dummy_data.dart';
 import '../../models/models.dart';
 import '../../services/game_token_service.dart';
 import '../../services/kelas_service.dart';
+import '../../services/nilai_sub_bab_service.dart';
 import '../../theme.dart';
 import '../../widgets/widgets.dart';
 import 'buat_token_ujian_screen.dart';
@@ -23,6 +27,7 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
   late Kelas _currentKelas;
   List<Siswa> _siswaList = [];
   List<GameTokenItem> _tokenList = [];
+  String? _downloadingTokenId;
   bool _isLoading = false;
   String? _errorMessage;
   int _selectedTabIndex = 0; // 0: Siswa, 1: Token Ujian
@@ -232,6 +237,61 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
     } else {
       scaffoldMessenger.showSnackBar(
         SnackBar(content: Text(res.message), backgroundColor: AppColors.error),
+      );
+    }
+  }
+
+  Future<void> _handleDownloadExcel(GameTokenItem token) async {
+    setState(() => _downloadingTokenId = token.id);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Mengunduh rekap nilai Excel (${token.kodeToken})...'),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+
+    final res = await NilaiSubBabService.instance.downloadExportExcelToken(
+      token.id,
+      fileName: 'Rekap_Nilai_${token.kodeToken}.xlsx',
+    );
+
+    if (!mounted) return;
+    setState(() => _downloadingTokenId = null);
+
+    if (res.success && res.data != null) {
+      final file = res.data!;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'File Excel disimpan: ${file.path.split(Platform.pathSeparator).last}',
+          ),
+          backgroundColor: AppColors.success,
+          action: SnackBarAction(
+            label: 'Buka',
+            textColor: Colors.white,
+            onPressed: () => OpenFilex.open(file.path),
+          ),
+        ),
+      );
+
+      final openRes = await OpenFilex.open(file.path);
+      if (openRes.type != ResultType.done && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'File berhasil diunduh. Info: ${openRes.message}',
+            ),
+          ),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            res.message.isNotEmpty ? res.message : 'Gagal mengunduh Excel',
+          ),
+          backgroundColor: AppColors.error,
+        ),
       );
     }
   }
@@ -483,7 +543,7 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
             ),
             const SizedBox(height: 16),
 
-            // Tab Selector: Siswa vs Token Ujian
+            // Tab Selector: Siswa vs Token Ujian (2 Tab)
             Container(
               decoration: BoxDecoration(
                 color: AppColors.background,
@@ -519,22 +579,26 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                           children: [
                             Icon(
                               Icons.people_alt_outlined,
-                              size: 18,
+                              size: 16,
                               color: _selectedTabIndex == 0
                                   ? AppColors.primary
                                   : AppColors.textSecondary,
                             ),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Siswa (${_siswaList.length})',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: _selectedTabIndex == 0
-                                    ? FontWeight.w700
-                                    : FontWeight.w600,
-                                color: _selectedTabIndex == 0
-                                    ? AppColors.primary
-                                    : AppColors.textSecondary,
+                            const SizedBox(width: 6),
+                            Flexible(
+                              child: Text(
+                                'Siswa (${_siswaList.length})',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: _selectedTabIndex == 0
+                                      ? FontWeight.w700
+                                      : FontWeight.w600,
+                                  color: _selectedTabIndex == 0
+                                      ? AppColors.primary
+                                      : AppColors.textSecondary,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -568,22 +632,26 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                           children: [
                             Icon(
                               Icons.vpn_key_rounded,
-                              size: 18,
+                              size: 16,
                               color: _selectedTabIndex == 1
                                   ? AppColors.primary
                                   : AppColors.textSecondary,
                             ),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Token Ujian (${_tokenList.length})',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: _selectedTabIndex == 1
-                                    ? FontWeight.w700
-                                    : FontWeight.w600,
-                                color: _selectedTabIndex == 1
-                                    ? AppColors.primary
-                                    : AppColors.textSecondary,
+                            const SizedBox(width: 6),
+                            Flexible(
+                              child: Text(
+                                'Token Ujian (${_tokenList.length})',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: _selectedTabIndex == 1
+                                      ? FontWeight.w700
+                                      : FontWeight.w600,
+                                  color: _selectedTabIndex == 1
+                                      ? AppColors.primary
+                                      : AppColors.textSecondary,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -688,7 +756,7 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
             ]
 
             // ── TAB 1: TOKEN UJIAN ───────────────────────────────────────────
-            else ...[
+            else if (_selectedTabIndex == 1) ...[
               // Banner Tombol Buat Token Baru
               Container(
                 decoration: BoxDecoration(
@@ -974,30 +1042,85 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                           ),
                           const Divider(height: 20),
 
-                          // Hint tap: "Lihat Rekap Nilai >"
+                          // Tombol "Download Rekap Excel" dan "Rekap Nilai"
                           Row(
                             children: [
-                              const Text(
-                                'Ketuk kartu untuk melihat rekap nilai',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: AppColors.textSecondary,
+                              OutlinedButton.icon(
+                                style: OutlinedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 8,
+                                  ),
+                                  side: BorderSide(
+                                    color: AppColors.success
+                                        .withValues(alpha: 0.5),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  foregroundColor: AppColors.success,
+                                ),
+                                onPressed: _downloadingTokenId == token.id
+                                    ? null
+                                    : () => _handleDownloadExcel(token),
+                                icon: _downloadingTokenId == token.id
+                                    ? const SizedBox(
+                                        width: 14,
+                                        height: 14,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: AppColors.success,
+                                        ),
+                                      )
+                                    : const Icon(
+                                        Icons.table_view_outlined,
+                                        size: 16,
+                                      ),
+                                label: Text(
+                                  _downloadingTokenId == token.id
+                                      ? 'Mengunduh...'
+                                      : 'Download Excel',
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                               ),
                               const Spacer(),
-                              const Text(
-                                'Rekap Nilai',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.primary,
+                              ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.primary,
+                                  foregroundColor: Colors.white,
+                                  elevation: 0,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 8,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(width: 4),
-                              const Icon(
-                                Icons.chevron_right,
-                                size: 18,
-                                color: AppColors.primary,
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => RekapNilaiUjianScreen(
+                                        tokenId: token.id,
+                                        kodeToken: token.kodeToken,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                icon: const Icon(
+                                  Icons.analytics_outlined,
+                                  size: 16,
+                                ),
+                                label: const Text(
+                                  'Lihat Nilai',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -1013,3 +1136,4 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
     );
   }
 }
+

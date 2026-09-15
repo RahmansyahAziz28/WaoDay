@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../data/dummy_data.dart';
 import '../../models/guru.dart';
 import '../../services/admin_service.dart';
 import '../../services/auth_service.dart';
@@ -434,18 +435,19 @@ class _ManajemenGuruScreenState extends State<ManajemenGuruScreen> {
 
   void _showGuruFormModal({Guru? guru}) {
     final isEdit = guru != null;
+    final currentUser = AppData.instance.currentUser;
+    final adminSekolah = currentUser?.namaSekolah ?? '';
+    final adminSekolahId = currentUser?.sekolahId ?? '';
+
     final namaCtrl = TextEditingController(text: isEdit ? guru.namaGuru : '');
     final nimCtrl = TextEditingController(text: isEdit ? guru.nim : '');
-    final sekolahCtrl = TextEditingController(text: isEdit ? guru.sekolah : '');
-    final kodeKelasCtrl = TextEditingController(
-      text: isEdit
-          ? (guru.kelasList.isNotEmpty
-                ? guru.kelasList.first.kodeKelas
-                : guru.kodeKelas)
-          : 'X-IPA-1',
+    final sekolahCtrl = TextEditingController(
+      text: isEdit ? guru.sekolah : adminSekolah,
     );
     final sekolahIdCtrl = TextEditingController(
-      text: isEdit ? (guru.sekolahId ?? guru.sekolahInfo?.id ?? '') : '',
+      text: isEdit
+          ? (guru.sekolahId ?? guru.sekolahInfo?.id ?? adminSekolahId)
+          : adminSekolahId,
     );
 
     bool isSubmitting = false;
@@ -535,19 +537,88 @@ class _ManajemenGuruScreenState extends State<ManajemenGuruScreen> {
                     ),
                     const SizedBox(height: 14),
                     if (!isEdit) ...[
-                      AppInput(
-                        label: 'Nama Sekolah',
-                        hint: 'Contoh: SMA Negeri 1 Indonesia 4860',
-                        controller: sekolahCtrl,
-                        icon: Icons.apartment_outlined,
-                      ),
-                      const SizedBox(height: 14),
-                      AppInput(
-                        label: 'Kode Kelas Awal',
-                        hint: 'Contoh: X-IPA-6281',
-                        controller: kodeKelasCtrl,
-                        icon: Icons.qr_code_outlined,
-                      ),
+                      if (adminSekolah.isNotEmpty) ...[
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 12,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.background,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: AppColors.border),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primary.withValues(
+                                    alpha: 0.1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Icon(
+                                  Icons.apartment_rounded,
+                                  size: 20,
+                                  color: AppColors.primary,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          'Sekolah',
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.textSecondary,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 6),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 6,
+                                            vertical: 1,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primary.withValues(
+                                              alpha: 0.1,
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              4,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      adminSekolah,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.text,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ] else ...[
+                        AppInput(
+                          label: 'Nama Sekolah',
+                          hint: 'Contoh: SMA Negeri 1 Indonesia 4860',
+                          controller: sekolahCtrl,
+                          icon: Icons.apartment_outlined,
+                        ),
+                      ],
                     ] else ...[
                       if (guru.sekolah.isNotEmpty)
                         Padding(
@@ -575,9 +646,12 @@ class _ManajemenGuruScreenState extends State<ManajemenGuruScreen> {
                       onPressed: () async {
                         final nama = namaCtrl.text.trim();
                         final nim = nimCtrl.text.trim();
-                        final sekolah = sekolahCtrl.text.trim();
-                        final kodeKelas = kodeKelasCtrl.text.trim();
-                        final sekolahId = sekolahIdCtrl.text.trim();
+                        final sekolah = sekolahCtrl.text.trim().isNotEmpty
+                            ? sekolahCtrl.text.trim()
+                            : adminSekolah;
+                        final sekolahId = sekolahIdCtrl.text.trim().isNotEmpty
+                            ? sekolahIdCtrl.text.trim()
+                            : adminSekolahId;
 
                         if (nama.isEmpty || nim.isEmpty) {
                           setModalState(() {
@@ -586,10 +660,9 @@ class _ManajemenGuruScreenState extends State<ManajemenGuruScreen> {
                           return;
                         }
 
-                        if (!isEdit && (sekolah.isEmpty || kodeKelas.isEmpty)) {
+                        if (!isEdit && sekolah.isEmpty) {
                           setModalState(() {
-                            formError =
-                                'Nama sekolah dan kode kelas awal wajib diisi';
+                            formError = 'Nama sekolah wajib diisi';
                           });
                           return;
                         }
@@ -625,7 +698,7 @@ class _ManajemenGuruScreenState extends State<ManajemenGuruScreen> {
                             namaGuru: nama,
                             nim: nim,
                             namaSekolah: sekolah,
-                            kodeKelas: kodeKelas,
+                            sekolahId: sekolahId.isNotEmpty ? sekolahId : null,
                           );
                         }
 
@@ -707,7 +780,7 @@ class _ManajemenGuruScreenState extends State<ManajemenGuruScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admin'),
+        title: const Text('Manajemen Guru'),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(

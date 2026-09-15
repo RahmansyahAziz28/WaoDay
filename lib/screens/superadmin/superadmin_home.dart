@@ -61,6 +61,7 @@ class _SuperAdminHomeState extends State<SuperAdminHome> {
         'Super Admin';
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         titleSpacing: 16,

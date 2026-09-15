@@ -1517,6 +1517,17 @@
       "norm_label": "client"
     },
     {
+      "label": "dart:async",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "dart_async",
+      "community": 11,
+      "community_name": "api_client.dart",
+      "norm_label": "dart:async"
+    },
+    {
       "label": "api_client.dart",
       "file_type": "code",
       "source_file": "lib/services/api_client.dart",
@@ -1636,17 +1647,6 @@
       "community": 11,
       "community_name": "api_client.dart",
       "norm_label": "_resolvetoken"
-    },
-    {
-      "label": "package:flutter/foundation.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "package_flutter_foundation_dart",
-      "community": 11,
-      "community_name": "api_client.dart",
-      "norm_label": "package:flutter/foundation.dart"
     },
     {
       "label": "package:http/http.dart",
@@ -2067,17 +2067,6 @@
       "norm_label": "updatedat"
     },
     {
-      "label": "String get",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "string_get",
-      "community": 14,
-      "community_name": "sekolah.dart",
-      "norm_label": "string get"
-    },
-    {
       "label": "AkademikApp",
       "file_type": "code",
       "source_file": "lib/main.dart",
@@ -2287,6 +2276,39 @@
       "norm_label": "theme_color"
     },
     {
+      "label": "ManajemenKelasScreen",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_manajemenkelasscreen",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "manajemenkelasscreen"
+    },
+    {
+      "label": "_ManajemenKelasScreenState",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_manajemenkelasscreenstate",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "_manajemenkelasscreenstate"
+    },
+    {
+      "label": "ManajemenSekolahScreen",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_manajemensekolahscreen",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "manajemensekolahscreen"
+    },
+    {
       "label": "_ManajemenSekolahScreenState",
       "file_type": "code",
       "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
@@ -2296,6 +2318,61 @@
       "community": 17,
       "community_name": "State",
       "norm_label": "_manajemensekolahscreenstate"
+    },
+    {
+      "label": "GuruDashboardScreen",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_dashboard_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_dashboard_screen_gurudashboardscreen",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "gurudashboardscreen"
+    },
+    {
+      "label": "_GuruDashboardScreenState",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_dashboard_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_dashboard_screen_gurudashboardscreenstate",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "_gurudashboardscreenstate"
+    },
+    {
+      "label": "KelasSayaScreen",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_kelas_saya_screen_kelassayascreen",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "kelassayascreen"
+    },
+    {
+      "label": "_KelasSayaScreenState",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_kelas_saya_screen_kelassayascreenstate",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "_kelassayascreenstate"
+    },
+    {
+      "label": "ManajemenSekolahScreen",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_manajemen_sekolah_screen_manajemensekolahscreen",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "manajemensekolahscreen"
     },
     {
       "label": "_ManajemenSekolahScreenState",
@@ -2329,6 +2406,17 @@
       "community": 17,
       "community_name": "State",
       "norm_label": "state"
+    },
+    {
+      "label": "StatefulWidget",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "statefulwidget",
+      "community": 17,
+      "community_name": "State",
+      "norm_label": "statefulwidget"
     },
     {
       "label": "main.dart",
@@ -2727,158 +2815,224 @@
       "norm_label": "what you must do when invoked"
     },
     {
-      "label": "forgot_password_screen.dart",
+      "label": "register_screen.dart",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen",
+      "id": "lib_screens_auth_register_screen",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "forgot_password_screen.dart"
+      "community_name": "register_screen.dart",
+      "norm_label": "register_screen.dart"
     },
     {
       "label": "build",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_build",
+      "id": "lib_screens_auth_register_screen_build",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
+      "community_name": "register_screen.dart",
       "norm_label": "build"
     },
     {
-      "label": "_buildForm",
+      "label": "_confirmController",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_buildform",
+      "id": "lib_screens_auth_register_screen_confirmcontroller",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "_buildform"
-    },
-    {
-      "label": "_buildSuccess",
-      "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_buildsuccess",
-      "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "_buildsuccess"
+      "community_name": "register_screen.dart",
+      "norm_label": "_confirmcontroller"
     },
     {
       "label": "createState",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_createstate",
+      "id": "lib_screens_auth_register_screen_createstate",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
+      "community_name": "register_screen.dart",
       "norm_label": "createstate"
     },
     {
       "label": "dispose",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_dispose",
+      "id": "lib_screens_auth_register_screen_dispose",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
+      "community_name": "register_screen.dart",
       "norm_label": "dispose"
     },
     {
-      "label": "_emailController",
+      "label": "_errors",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_emailcontroller",
+      "id": "lib_screens_auth_register_screen_errors",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "_emailcontroller"
+      "community_name": "register_screen.dart",
+      "norm_label": "_errors"
     },
     {
-      "label": "_error",
+      "label": "_handleRegister",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_error",
+      "id": "lib_screens_auth_register_screen_handleregister",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "_error"
-    },
-    {
-      "label": "ForgotPasswordScreen",
-      "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_forgotpasswordscreen",
-      "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "forgotpasswordscreen"
-    },
-    {
-      "label": "_ForgotPasswordScreenState",
-      "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_forgotpasswordscreenstate",
-      "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "_forgotpasswordscreenstate"
-    },
-    {
-      "label": "_handleSubmit",
-      "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_handlesubmit",
-      "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "_handlesubmit"
+      "community_name": "register_screen.dart",
+      "norm_label": "_handleregister"
     },
     {
       "label": "_isLoading",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_isloading",
+      "id": "lib_screens_auth_register_screen_isloading",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
+      "community_name": "register_screen.dart",
       "norm_label": "_isloading"
+    },
+    {
+      "label": "_kelasController",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_kelascontroller",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "_kelascontroller"
+    },
+    {
+      "label": "_namaController",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_namacontroller",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "_namacontroller"
+    },
+    {
+      "label": "_nomorController",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_nomorcontroller",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "_nomorcontroller"
+    },
+    {
+      "label": "_obscurePassword",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_obscurepassword",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "_obscurepassword"
+    },
+    {
+      "label": "_passwordController",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_passwordcontroller",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "_passwordcontroller"
+    },
+    {
+      "label": "RegisterScreen",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_registerscreen",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "registerscreen"
+    },
+    {
+      "label": "_RegisterScreenState",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_registerscreenstate",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "_registerscreenstate"
     },
     {
       "label": "routeName",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_routename",
+      "id": "lib_screens_auth_register_screen_routename",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
+      "community_name": "register_screen.dart",
       "norm_label": "routename"
     },
     {
-      "label": "_sent",
+      "label": "_sekolah",
       "file_type": "code",
-      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_file": "lib/screens/auth/register_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_forgot_password_screen_sent",
+      "id": "lib_screens_auth_register_screen_sekolah",
       "community": 2,
-      "community_name": "forgot_password_screen.dart",
-      "norm_label": "_sent"
+      "community_name": "register_screen.dart",
+      "norm_label": "_sekolah"
+    },
+    {
+      "label": "_success",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_success",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "_success"
+    },
+    {
+      "label": "_validate",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_register_screen_validate",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "_validate"
+    },
+    {
+      "label": "Map",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "map",
+      "community": 2,
+      "community_name": "register_screen.dart",
+      "norm_label": "map"
     },
     {
       "label": "confirm_dialog.dart",
@@ -3321,6 +3475,17 @@
       "norm_label": "detail_kelas_screen.dart"
     },
     {
+      "label": "_buildTokenInfoChip",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_detail_kelas_screen_buildtokeninfochip",
+      "community": 23,
+      "community_name": "detail_kelas_screen.dart",
+      "norm_label": "_buildtokeninfochip"
+    },
+    {
       "label": "createState",
       "file_type": "code",
       "source_file": "lib/screens/guru/detail_kelas_screen.dart",
@@ -3431,6 +3596,17 @@
       "norm_label": "_loaddata"
     },
     {
+      "label": "_selectedTabIndex",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_detail_kelas_screen_selectedtabindex",
+      "community": 23,
+      "community_name": "detail_kelas_screen.dart",
+      "norm_label": "_selectedtabindex"
+    },
+    {
       "label": "_showSiswaFormModal",
       "file_type": "code",
       "source_file": "lib/screens/guru/detail_kelas_screen.dart",
@@ -3462,6 +3638,28 @@
       "community": 23,
       "community_name": "detail_kelas_screen.dart",
       "norm_label": "_siswalist"
+    },
+    {
+      "label": "_tokenList",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_detail_kelas_screen_tokenlist",
+      "community": 23,
+      "community_name": "detail_kelas_screen.dart",
+      "norm_label": "_tokenlist"
+    },
+    {
+      "label": "rekap_nilai_ujian_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "rekap_nilai_ujian_screen_dart",
+      "community": 23,
+      "community_name": "detail_kelas_screen.dart",
+      "norm_label": "rekap_nilai_ujian_screen.dart"
     },
     {
       "label": "IconData",
@@ -3704,6 +3902,17 @@
       "community": 25,
       "community_name": "guru.dart",
       "norm_label": "page"
+    },
+    {
+      "label": "PaginatedGuruResponse",
+      "file_type": "code",
+      "source_file": "lib/models/guru.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_guru_paginatedgururesponse",
+      "community": 25,
+      "community_name": "guru.dart",
+      "norm_label": "paginatedgururesponse"
     },
     {
       "label": "sekolah",
@@ -4498,6 +4707,28 @@
       "norm_label": "dashboardguruuri"
     },
     {
+      "label": "gameTokenNilaiUri",
+      "file_type": "code",
+      "source_file": "lib/config/api_config.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_config_api_config_gametokennilaiuri",
+      "community": 33,
+      "community_name": "api_config.dart",
+      "norm_label": "gametokennilaiuri"
+    },
+    {
+      "label": "gameTokensByKelasUri",
+      "file_type": "code",
+      "source_file": "lib/config/api_config.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_config_api_config_gametokensbykelasuri",
+      "community": 33,
+      "community_name": "api_config.dart",
+      "norm_label": "gametokensbykelasuri"
+    },
+    {
       "label": "gameTokenUri",
       "file_type": "code",
       "source_file": "lib/config/api_config.dart",
@@ -4727,17 +4958,6 @@
       "community": 34,
       "community_name": "admin_service.dart",
       "norm_label": "guru"
-    },
-    {
-      "label": "PaginatedGuruResponse",
-      "file_type": "code",
-      "source_file": "lib/models/guru.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_models_guru_paginatedgururesponse",
-      "community": 34,
-      "community_name": "admin_service.dart",
-      "norm_label": "paginatedgururesponse"
     },
     {
       "label": "admin_service.dart",
@@ -5081,292 +5301,6 @@
       "norm_label": "_totalkelas"
     },
     {
-      "label": "admin/manajemen_sekolah_screen.dart",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "admin/manajemen_sekolah_screen.dart"
-    },
-    {
-      "label": "build",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_build",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "build"
-    },
-    {
-      "label": "createState",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_createstate",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "createstate"
-    },
-    {
-      "label": "dispose",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_dispose",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "dispose"
-    },
-    {
-      "label": "_errorMessage",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_errormessage",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_errormessage"
-    },
-    {
-      "label": "_handleDeleteSekolah",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_handledeletesekolah",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_handledeletesekolah"
-    },
-    {
-      "label": "initState",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_initstate",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "initstate"
-    },
-    {
-      "label": "_isLoading",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_isloading",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_isloading"
-    },
-    {
-      "label": "_loadSekolah",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_loadsekolah",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_loadsekolah"
-    },
-    {
-      "label": "_searchController",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_searchcontroller",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_searchcontroller"
-    },
-    {
-      "label": "_searchQuery",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_searchquery",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_searchquery"
-    },
-    {
-      "label": "_sekolahList",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_sekolahlist",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_sekolahlist"
-    },
-    {
-      "label": "_showSekolahFormModal",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_showsekolahformmodal",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_showsekolahformmodal"
-    },
-    {
-      "label": "_showSekolahOptions",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_showsekolahoptions",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_showsekolahoptions"
-    },
-    {
-      "label": "superadmin_home.dart",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "superadmin_home.dart"
-    },
-    {
-      "label": "build",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_build",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "build"
-    },
-    {
-      "label": "createState",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_createstate",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "createstate"
-    },
-    {
-      "label": "_currentIndex",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_currentindex",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_currentindex"
-    },
-    {
-      "label": "_filterSekolahIdForAdmin",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_filtersekolahidforadmin",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_filtersekolahidforadmin"
-    },
-    {
-      "label": "_handleLogout",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_handlelogout",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_handlelogout"
-    },
-    {
-      "label": "_onSelectSekolahForAdmin",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_onselectsekolahforadmin",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_onselectsekolahforadmin"
-    },
-    {
-      "label": "routeName",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_routename",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "routename"
-    },
-    {
-      "label": "SuperAdminHome",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_superadminhome",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "superadminhome"
-    },
-    {
-      "label": "_SuperAdminHomeState",
-      "file_type": "code",
-      "source_file": "lib/screens/superadmin/superadmin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_superadmin_superadmin_home_superadminhomestate",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "_superadminhomestate"
-    },
-    {
-      "label": "manajemen_admin_sekolah_screen.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "manajemen_admin_sekolah_screen_dart",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "manajemen_admin_sekolah_screen.dart"
-    },
-    {
-      "label": "manajemen_sekolah_screen.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "manajemen_sekolah_screen_dart",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "manajemen_sekolah_screen.dart"
-    },
-    {
       "label": "../models/guru.dart",
       "file_type": "code",
       "source_file": null,
@@ -5376,28 +5310,6 @@
       "community": 35,
       "community_name": "admin_dashboard_screen.dart",
       "norm_label": "../models/guru.dart"
-    },
-    {
-      "label": "../models/sekolah.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "models_sekolah_dart",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "../models/sekolah.dart"
-    },
-    {
-      "label": "../../services/admin_service.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "services_admin_service_dart",
-      "community": 35,
-      "community_name": "admin_dashboard_screen.dart",
-      "norm_label": "../../services/admin_service.dart"
     },
     {
       "label": "kelas_service.dart",
@@ -5576,224 +5488,378 @@
       "norm_label": "static final kelasservice"
     },
     {
-      "label": "register_screen.dart",
+      "label": "game_token.dart",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen",
+      "id": "lib_models_game_token",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "register_screen.dart"
+      "community_name": "game_token.dart",
+      "norm_label": "game_token.dart"
     },
     {
-      "label": "build",
+      "label": "acak",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_build",
+      "id": "lib_models_game_token_acak",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "build"
+      "community_name": "game_token.dart",
+      "norm_label": "acak"
     },
     {
-      "label": "_confirmController",
+      "label": "aktif",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_confirmcontroller",
+      "id": "lib_models_game_token_aktif",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_confirmcontroller"
+      "community_name": "game_token.dart",
+      "norm_label": "aktif"
     },
     {
-      "label": "createState",
+      "label": "belumTuntas",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_createstate",
+      "id": "lib_models_game_token_belumtuntas",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "createstate"
+      "community_name": "game_token.dart",
+      "norm_label": "belumtuntas"
     },
     {
-      "label": "dispose",
+      "label": "createdAt",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_dispose",
+      "id": "lib_models_game_token_createdat",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "dispose"
+      "community_name": "game_token.dart",
+      "norm_label": "createdat"
     },
     {
-      "label": "_errors",
+      "label": "dimainkanAt",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_errors",
+      "id": "lib_models_game_token_dimainkanat",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_errors"
+      "community_name": "game_token.dart",
+      "norm_label": "dimainkanat"
     },
     {
-      "label": "_handleRegister",
+      "label": "fromJson",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_handleregister",
+      "id": "lib_models_game_token_fromjson",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_handleregister"
+      "community_name": "game_token.dart",
+      "norm_label": "fromjson"
     },
     {
-      "label": "_isLoading",
+      "label": "GameTokenItem",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_isloading",
+      "id": "lib_models_game_token_gametokenitem",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_isloading"
+      "community_name": "game_token.dart",
+      "norm_label": "gametokenitem"
     },
     {
-      "label": "_kelasController",
+      "label": "id",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_kelascontroller",
+      "id": "lib_models_game_token_id",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_kelascontroller"
+      "community_name": "game_token.dart",
+      "norm_label": "id"
     },
     {
-      "label": "_namaController",
+      "label": "izinkanOffline",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_namacontroller",
+      "id": "lib_models_game_token_izinkanoffline",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_namacontroller"
+      "community_name": "game_token.dart",
+      "norm_label": "izinkanoffline"
     },
     {
-      "label": "_nomorController",
+      "label": "jumlahSoal",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_nomorcontroller",
+      "id": "lib_models_game_token_jumlahsoal",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_nomorcontroller"
+      "community_name": "game_token.dart",
+      "norm_label": "jumlahsoal"
     },
     {
-      "label": "_obscurePassword",
+      "label": "kelasId",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_obscurepassword",
+      "id": "lib_models_game_token_kelasid",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_obscurepassword"
+      "community_name": "game_token.dart",
+      "norm_label": "kelasid"
     },
     {
-      "label": "_passwordController",
+      "label": "kkm",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_passwordcontroller",
+      "id": "lib_models_game_token_kkm",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_passwordcontroller"
+      "community_name": "game_token.dart",
+      "norm_label": "kkm"
     },
     {
-      "label": "RegisterScreen",
+      "label": "kodeToken",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_registerscreen",
+      "id": "lib_models_game_token_kodetoken",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "registerscreen"
+      "community_name": "game_token.dart",
+      "norm_label": "kodetoken"
     },
     {
-      "label": "_RegisterScreenState",
+      "label": "namaPemain",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_registerscreenstate",
+      "id": "lib_models_game_token_namapemain",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_registerscreenstate"
+      "community_name": "game_token.dart",
+      "norm_label": "namapemain"
     },
     {
-      "label": "routeName",
+      "label": "namaSesi",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_routename",
+      "id": "lib_models_game_token_namasesi",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "routename"
+      "community_name": "game_token.dart",
+      "norm_label": "namasesi"
     },
     {
-      "label": "_sekolah",
+      "label": "nilai",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_sekolah",
+      "id": "lib_models_game_token_nilai",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_sekolah"
+      "community_name": "game_token.dart",
+      "norm_label": "nilai"
     },
     {
-      "label": "_success",
+      "label": "NilaiSiswaItem",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_success",
+      "id": "lib_models_game_token_nilaisiswaitem",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_success"
+      "community_name": "game_token.dart",
+      "norm_label": "nilaisiswaitem"
     },
     {
-      "label": "_validate",
+      "label": "nilaiTerendah",
       "file_type": "code",
-      "source_file": "lib/screens/auth/register_screen.dart",
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_auth_register_screen_validate",
+      "id": "lib_models_game_token_nilaiterendah",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "_validate"
+      "community_name": "game_token.dart",
+      "norm_label": "nilaiterendah"
     },
     {
-      "label": "Map",
+      "label": "nilaiTertinggi",
       "file_type": "code",
-      "source_file": null,
+      "source_file": "lib/models/game_token.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "map",
+      "id": "lib_models_game_token_nilaitertinggi",
       "community": 37,
-      "community_name": "register_screen.dart",
-      "norm_label": "map"
+      "community_name": "game_token.dart",
+      "norm_label": "nilaitertinggi"
+    },
+    {
+      "label": "nis",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_nis",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "nis"
+    },
+    {
+      "label": "paket",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_paket",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "paket"
+    },
+    {
+      "label": "PaketUjianInfo",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_paketujianinfo",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "paketujianinfo"
+    },
+    {
+      "label": "peringkat",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_peringkat",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "peringkat"
+    },
+    {
+      "label": "rekap",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_rekap",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "rekap"
+    },
+    {
+      "label": "rerataNilai",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_reratanilai",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "reratanilai"
+    },
+    {
+      "label": "semester",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_semester",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "semester"
+    },
+    {
+      "label": "StatistikRekap",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_statistikrekap",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "statistikrekap"
+    },
+    {
+      "label": "tingkatKelas",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_tingkatkelas",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "tingkatkelas"
+    },
+    {
+      "label": "toJson",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_tojson",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "tojson"
+    },
+    {
+      "label": "totalBenar",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_totalbenar",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "totalbenar"
+    },
+    {
+      "label": "totalPemain",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_totalpemain",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "totalpemain"
+    },
+    {
+      "label": "totalSalah",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_totalsalah",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "totalsalah"
+    },
+    {
+      "label": "tuntas",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_tuntas",
+      "community": 37,
+      "community_name": "game_token.dart",
+      "norm_label": "tuntas"
     },
     {
       "label": "manajemen_guru_screen.dart",
@@ -6390,6 +6456,270 @@
       "norm_label": "variant"
     },
     {
+      "label": "guru_dashboard_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "guru_dashboard_screen_dart",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "guru_dashboard_screen.dart"
+    },
+    {
+      "label": "kelas_saya_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "kelas_saya_screen_dart",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "kelas_saya_screen.dart"
+    },
+    {
+      "label": "forgot_password_screen.dart",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "forgot_password_screen.dart"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_build",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "build"
+    },
+    {
+      "label": "_buildForm",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_buildform",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_buildform"
+    },
+    {
+      "label": "_buildSuccess",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_buildsuccess",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_buildsuccess"
+    },
+    {
+      "label": "createState",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_createstate",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "createstate"
+    },
+    {
+      "label": "dispose",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_dispose",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "dispose"
+    },
+    {
+      "label": "_emailController",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_emailcontroller",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_emailcontroller"
+    },
+    {
+      "label": "_error",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_error",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_error"
+    },
+    {
+      "label": "ForgotPasswordScreen",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_forgotpasswordscreen",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "forgotpasswordscreen"
+    },
+    {
+      "label": "_ForgotPasswordScreenState",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_forgotpasswordscreenstate",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_forgotpasswordscreenstate"
+    },
+    {
+      "label": "_handleSubmit",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_handlesubmit",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_handlesubmit"
+    },
+    {
+      "label": "_isLoading",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_isloading",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_isloading"
+    },
+    {
+      "label": "routeName",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_routename",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "routename"
+    },
+    {
+      "label": "_sent",
+      "file_type": "code",
+      "source_file": "lib/screens/auth/forgot_password_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_auth_forgot_password_screen_sent",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_sent"
+    },
+    {
+      "label": "guru_home.dart",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_home",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "guru_home.dart"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_home_build",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "build"
+    },
+    {
+      "label": "createState",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_home_createstate",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "createstate"
+    },
+    {
+      "label": "GuruHome",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_home_guruhome",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "guruhome"
+    },
+    {
+      "label": "_GuruHomeState",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_home_guruhomestate",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_guruhomestate"
+    },
+    {
+      "label": "_index",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_home_index",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_index"
+    },
+    {
+      "label": "routeName",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_home_routename",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "routename"
+    },
+    {
+      "label": "_screens",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/guru_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_guru_home_screens",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "_screens"
+    },
+    {
       "label": "theme.dart",
       "file_type": "code",
       "source_file": "lib/theme.dart",
@@ -6397,7 +6727,7 @@
       "_origin": "ast",
       "id": "lib_theme",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "theme.dart"
     },
     {
@@ -6408,7 +6738,7 @@
       "_origin": "ast",
       "id": "lib_theme_appcolors",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "appcolors"
     },
     {
@@ -6419,7 +6749,7 @@
       "_origin": "ast",
       "id": "lib_theme_apptheme",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "apptheme"
     },
     {
@@ -6430,7 +6760,7 @@
       "_origin": "ast",
       "id": "lib_theme_background",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "background"
     },
     {
@@ -6441,7 +6771,7 @@
       "_origin": "ast",
       "id": "lib_theme_border",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "border"
     },
     {
@@ -6452,7 +6782,7 @@
       "_origin": "ast",
       "id": "lib_theme_error",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "error"
     },
     {
@@ -6463,7 +6793,7 @@
       "_origin": "ast",
       "id": "lib_theme_primary",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "primary"
     },
     {
@@ -6474,7 +6804,7 @@
       "_origin": "ast",
       "id": "lib_theme_primarydark",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "primarydark"
     },
     {
@@ -6485,7 +6815,7 @@
       "_origin": "ast",
       "id": "lib_theme_secondary",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "secondary"
     },
     {
@@ -6496,7 +6826,7 @@
       "_origin": "ast",
       "id": "lib_theme_success",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "success"
     },
     {
@@ -6507,7 +6837,7 @@
       "_origin": "ast",
       "id": "lib_theme_surface",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "surface"
     },
     {
@@ -6518,7 +6848,7 @@
       "_origin": "ast",
       "id": "lib_theme_text",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "text"
     },
     {
@@ -6529,7 +6859,7 @@
       "_origin": "ast",
       "id": "lib_theme_textsecondary",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "textsecondary"
     },
     {
@@ -6540,7 +6870,7 @@
       "_origin": "ast",
       "id": "lib_theme_texttheme",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "_texttheme"
     },
     {
@@ -6551,8 +6881,30 @@
       "_origin": "ast",
       "id": "lib_theme_warning",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "warning"
+    },
+    {
+      "label": "profil_guru_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "profil_guru_screen_dart",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "profil_guru_screen.dart"
+    },
+    {
+      "label": "static const",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "static_const",
+      "community": 40,
+      "community_name": "forgot_password_screen.dart",
+      "norm_label": "static const"
     },
     {
       "label": "static final TextTheme",
@@ -6562,7 +6914,7 @@
       "_origin": "ast",
       "id": "static_final_texttheme",
       "community": 40,
-      "community_name": "theme.dart",
+      "community_name": "forgot_password_screen.dart",
       "norm_label": "static final texttheme"
     },
     {
@@ -6698,50 +7050,6 @@
       "norm_label": "rules"
     },
     {
-      "label": "api_client.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "api_client_dart",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "api_client.dart"
-    },
-    {
-      "label": "auth_service.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "auth_service_dart",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "auth_service.dart"
-    },
-    {
-      "label": "../config/api_config.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "config_api_config_dart",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "../config/api_config.dart"
-    },
-    {
-      "label": "dart:async",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "dart_async",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "dart:async"
-    },
-    {
       "label": "dart:convert",
       "file_type": "code",
       "source_file": null,
@@ -6749,7 +7057,7 @@
       "_origin": "ast",
       "id": "dart_convert",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "dart:convert"
     },
     {
@@ -6760,7 +7068,7 @@
       "_origin": "ast",
       "id": "dart_io",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "dart:io"
     },
     {
@@ -6771,74 +7079,8 @@
       "_origin": "ast",
       "id": "lib_models_guru_dashboard_gurudashboarddata",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "gurudashboarddata"
-    },
-    {
-      "label": "game_token_service.dart",
-      "file_type": "code",
-      "source_file": "lib/services/game_token_service.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_game_token_service",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "game_token_service.dart"
-    },
-    {
-      "label": "createGameToken",
-      "file_type": "code",
-      "source_file": "lib/services/game_token_service.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_game_token_service_creategametoken",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "creategametoken"
-    },
-    {
-      "label": "GameTokenService",
-      "file_type": "code",
-      "source_file": "lib/services/game_token_service.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_game_token_service_gametokenservice",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "gametokenservice"
-    },
-    {
-      "label": "getMateri",
-      "file_type": "code",
-      "source_file": "lib/services/game_token_service.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_game_token_service_getmateri",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "getmateri"
-    },
-    {
-      "label": "_getToken",
-      "file_type": "code",
-      "source_file": "lib/services/game_token_service.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_game_token_service_gettoken",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "_gettoken"
-    },
-    {
-      "label": "instance",
-      "file_type": "code",
-      "source_file": "lib/services/game_token_service.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_game_token_service_instance",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "instance"
     },
     {
       "label": "guru_service.dart",
@@ -6848,7 +7090,7 @@
       "_origin": "ast",
       "id": "lib_services_guru_service",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "guru_service.dart"
     },
     {
@@ -6859,7 +7101,7 @@
       "_origin": "ast",
       "id": "lib_services_guru_service_getdashboarddata",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "getdashboarddata"
     },
     {
@@ -6870,7 +7112,7 @@
       "_origin": "ast",
       "id": "lib_services_guru_service_guruservice",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "guruservice"
     },
     {
@@ -6881,8 +7123,19 @@
       "_origin": "ast",
       "id": "lib_services_guru_service_instance",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "instance"
+    },
+    {
+      "label": "../models/auth_user.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "models_auth_user_dart",
+      "community": 42,
+      "community_name": "guru_service.dart",
+      "norm_label": "../models/auth_user.dart"
     },
     {
       "label": "../models/guru_dashboard.dart",
@@ -6892,30 +7145,8 @@
       "_origin": "ast",
       "id": "models_guru_dashboard_dart",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "../models/guru_dashboard.dart"
-    },
-    {
-      "label": "../models/materi.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "models_materi_dart",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "../models/materi.dart"
-    },
-    {
-      "label": "static final GameTokenService",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "static_final_gametokenservice",
-      "community": 42,
-      "community_name": "game_token_service.dart",
-      "norm_label": "static final gametokenservice"
     },
     {
       "label": "static final GuruService",
@@ -6925,7 +7156,7 @@
       "_origin": "ast",
       "id": "static_final_guruservice",
       "community": 42,
-      "community_name": "game_token_service.dart",
+      "community_name": "guru_service.dart",
       "norm_label": "static final guruservice"
     },
     {
@@ -6938,6 +7169,17 @@
       "community": 43,
       "community_name": "manajemen_admin_sekolah_screen.dart",
       "norm_label": "class"
+    },
+    {
+      "label": "FormState",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "formstate",
+      "community": 43,
+      "community_name": "manajemen_admin_sekolah_screen.dart",
+      "norm_label": "formstate"
     },
     {
       "label": "manajemen_admin_sekolah_screen.dart",
@@ -7259,17 +7501,6 @@
       "norm_label": "_errormessage"
     },
     {
-      "label": "_handleDeleteKelas",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_kelas_saya_screen_handledeletekelas",
-      "community": 44,
-      "community_name": "kelas_saya_screen.dart",
-      "norm_label": "_handledeletekelas"
-    },
-    {
       "label": "_handleRefresh",
       "file_type": "code",
       "source_file": "lib/screens/guru/kelas_saya_screen.dart",
@@ -7303,28 +7534,6 @@
       "norm_label": "_isloading"
     },
     {
-      "label": "KelasSayaScreen",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_kelas_saya_screen_kelassayascreen",
-      "community": 44,
-      "community_name": "kelas_saya_screen.dart",
-      "norm_label": "kelassayascreen"
-    },
-    {
-      "label": "_KelasSayaScreenState",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_kelas_saya_screen_kelassayascreenstate",
-      "community": 44,
-      "community_name": "kelas_saya_screen.dart",
-      "norm_label": "_kelassayascreenstate"
-    },
-    {
       "label": "_loadKelas",
       "file_type": "code",
       "source_file": "lib/screens/guru/kelas_saya_screen.dart",
@@ -7334,28 +7543,6 @@
       "community": 44,
       "community_name": "kelas_saya_screen.dart",
       "norm_label": "_loadkelas"
-    },
-    {
-      "label": "_showKelasFormModal",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_kelas_saya_screen_showkelasformmodal",
-      "community": 44,
-      "community_name": "kelas_saya_screen.dart",
-      "norm_label": "_showkelasformmodal"
-    },
-    {
-      "label": "_showKelasOptions",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_kelas_saya_screen_showkelasoptions",
-      "community": 44,
-      "community_name": "kelas_saya_screen.dart",
-      "norm_label": "_showkelasoptions"
     },
     {
       "label": "../../services/kelas_service.dart",
@@ -7433,28 +7620,6 @@
       "community": 45,
       "community_name": "guru_dashboard_screen.dart",
       "norm_label": "_fetchdashboard"
-    },
-    {
-      "label": "GuruDashboardScreen",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_dashboard_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_dashboard_screen_gurudashboardscreen",
-      "community": 45,
-      "community_name": "guru_dashboard_screen.dart",
-      "norm_label": "gurudashboardscreen"
-    },
-    {
-      "label": "_GuruDashboardScreenState",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_dashboard_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_dashboard_screen_gurudashboardscreenstate",
-      "community": 45,
-      "community_name": "guru_dashboard_screen.dart",
-      "norm_label": "_gurudashboardscreenstate"
     },
     {
       "label": "icon",
@@ -7952,17 +8117,6 @@
       "norm_label": "../admin/admin_home.dart"
     },
     {
-      "label": "guru_dashboard_screen.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "guru_dashboard_screen_dart",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "guru_dashboard_screen.dart"
-    },
-    {
       "label": "../guru/guru_home.dart",
       "file_type": "code",
       "source_file": null,
@@ -7972,61 +8126,6 @@
       "community": 5,
       "community_name": "login_screen.dart",
       "norm_label": "../guru/guru_home.dart"
-    },
-    {
-      "label": "kelas_saya_screen.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "kelas_saya_screen_dart",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "kelas_saya_screen.dart"
-    },
-    {
-      "label": "admin_home.dart",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/admin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_admin_home",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "admin_home.dart"
-    },
-    {
-      "label": "AdminHome",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/admin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_admin_home_adminhome",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "adminhome"
-    },
-    {
-      "label": "build",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/admin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_admin_home_build",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "build"
-    },
-    {
-      "label": "routeName",
-      "file_type": "code",
-      "source_file": "lib/screens/admin/admin_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_admin_admin_home_routename",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "routename"
     },
     {
       "label": "login_screen.dart",
@@ -8282,94 +8381,6 @@
       "norm_label": "_splashscreenstate"
     },
     {
-      "label": "guru_home.dart",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_home",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "guru_home.dart"
-    },
-    {
-      "label": "build",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_home_build",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "build"
-    },
-    {
-      "label": "createState",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_home_createstate",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "createstate"
-    },
-    {
-      "label": "GuruHome",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_home_guruhome",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "guruhome"
-    },
-    {
-      "label": "_GuruHomeState",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_home_guruhomestate",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "_guruhomestate"
-    },
-    {
-      "label": "_index",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_home_index",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "_index"
-    },
-    {
-      "label": "routeName",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_home_routename",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "routename"
-    },
-    {
-      "label": "_screens",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/guru_home.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_guru_home_screens",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "_screens"
-    },
-    {
       "label": "login_screen.dart",
       "file_type": "code",
       "source_file": null,
@@ -8381,28 +8392,6 @@
       "norm_label": "login_screen.dart"
     },
     {
-      "label": "manajemen_guru_screen.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "manajemen_guru_screen_dart",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "manajemen_guru_screen.dart"
-    },
-    {
-      "label": "profil_guru_screen.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "profil_guru_screen_dart",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "profil_guru_screen.dart"
-    },
-    {
       "label": "../../services/auth_service.dart",
       "file_type": "code",
       "source_file": null,
@@ -8412,17 +8401,6 @@
       "community": 5,
       "community_name": "login_screen.dart",
       "norm_label": "../../services/auth_service.dart"
-    },
-    {
-      "label": "static const",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "static_const",
-      "community": 5,
-      "community_name": "login_screen.dart",
-      "norm_label": "static const"
     },
     {
       "label": "../superadmin/superadmin_home.dart",
@@ -9283,17 +9261,6 @@
       "norm_label": "scaffoldmessengerstate"
     },
     {
-      "label": "FormState",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "formstate",
-      "community": 64,
-      "community_name": "superadmin/manajemen_sekolah_screen.dart",
-      "norm_label": "formstate"
-    },
-    {
       "label": "superadmin/manajemen_sekolah_screen.dart",
       "file_type": "code",
       "source_file": "lib/screens/superadmin/manajemen_sekolah_screen.dart",
@@ -9844,6 +9811,17 @@
       "norm_label": "userid"
     },
     {
+      "label": "auth_service.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "auth_service_dart",
+      "community": 66,
+      "community_name": "admin_sekolah_service.dart",
+      "norm_label": "auth_service.dart"
+    },
+    {
       "label": "AdminSekolah",
       "file_type": "code",
       "source_file": "lib/models/admin_sekolah.dart",
@@ -9976,15 +9954,15 @@
       "norm_label": "../models/admin_sekolah.dart"
     },
     {
-      "label": "../models/auth_user.dart",
+      "label": "package:flutter/foundation.dart",
       "file_type": "code",
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "id": "models_auth_user_dart",
+      "id": "package_flutter_foundation_dart",
       "community": 66,
       "community_name": "admin_sekolah_service.dart",
-      "norm_label": "../models/auth_user.dart"
+      "norm_label": "package:flutter/foundation.dart"
     },
     {
       "label": "static final AdminSekolahService",
@@ -10174,15 +10152,15 @@
       "norm_label": "tojson"
     },
     {
-      "label": "List",
+      "label": "String get",
       "file_type": "code",
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "id": "list",
+      "id": "string_get",
       "community": 67,
       "community_name": "kelas.dart",
-      "norm_label": "list"
+      "norm_label": "string get"
     },
     {
       "label": "build",
@@ -10194,6 +10172,17 @@
       "community": 68,
       "community_name": "MaterialPageRoute",
       "norm_label": "build"
+    },
+    {
+      "label": "_openBuatToken",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_detail_kelas_screen_openbuattoken",
+      "community": 68,
+      "community_name": "MaterialPageRoute",
+      "norm_label": "_openbuattoken"
     },
     {
       "label": "build",
@@ -10229,37 +10218,180 @@
       "norm_label": "materialpageroute"
     },
     {
-      "label": "ManajemenSekolahScreen",
+      "label": "manajemen_kelas_screen.dart",
       "file_type": "code",
-      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_admin_manajemen_sekolah_screen_manajemensekolahscreen",
+      "id": "lib_screens_admin_manajemen_kelas_screen",
       "community": 69,
-      "community_name": "StatefulWidget",
-      "norm_label": "manajemensekolahscreen"
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "manajemen_kelas_screen.dart"
     },
     {
-      "label": "ManajemenSekolahScreen",
+      "label": "build",
       "file_type": "code",
-      "source_file": "lib/screens/superadmin/manajemen_sekolah_screen.dart",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_superadmin_manajemen_sekolah_screen_manajemensekolahscreen",
+      "id": "lib_screens_admin_manajemen_kelas_screen_build",
       "community": 69,
-      "community_name": "StatefulWidget",
-      "norm_label": "manajemensekolahscreen"
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "build"
     },
     {
-      "label": "StatefulWidget",
+      "label": "createState",
       "file_type": "code",
-      "source_file": null,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "statefulwidget",
+      "id": "lib_screens_admin_manajemen_kelas_screen_createstate",
       "community": 69,
-      "community_name": "StatefulWidget",
-      "norm_label": "statefulwidget"
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "createstate"
+    },
+    {
+      "label": "dispose",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_dispose",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "dispose"
+    },
+    {
+      "label": "_errorMessage",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_errormessage",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_errormessage"
+    },
+    {
+      "label": "_guruList",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_gurulist",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_gurulist"
+    },
+    {
+      "label": "_handleDeleteKelas",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_handledeletekelas",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_handledeletekelas"
+    },
+    {
+      "label": "_handleLogout",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_handlelogout",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_handlelogout"
+    },
+    {
+      "label": "initState",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_initstate",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "initstate"
+    },
+    {
+      "label": "_isLoading",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_isloading",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_isloading"
+    },
+    {
+      "label": "_kelasList",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_kelaslist",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_kelaslist"
+    },
+    {
+      "label": "_loadData",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_loaddata",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_loaddata"
+    },
+    {
+      "label": "_searchController",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_searchcontroller",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_searchcontroller"
+    },
+    {
+      "label": "_searchQuery",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_searchquery",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_searchquery"
+    },
+    {
+      "label": "_showKelasDetailModal",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_showkelasdetailmodal",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_showkelasdetailmodal"
+    },
+    {
+      "label": "_showKelasFormModal",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_kelas_screen_showkelasformmodal",
+      "community": 69,
+      "community_name": "manajemen_kelas_screen.dart",
+      "norm_label": "_showkelasformmodal"
     },
     {
       "label": "app_input.dart",
@@ -10438,6 +10570,17 @@
       "norm_label": "auth_user.dart"
     },
     {
+      "label": "game_token.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "game_token_dart",
+      "community": 70,
+      "community_name": "models.dart",
+      "norm_label": "game_token.dart"
+    },
+    {
       "label": "guru.dart",
       "file_type": "code",
       "source_file": null,
@@ -10515,6 +10658,215 @@
       "norm_label": "siswa.dart"
     },
     {
+      "label": "RekapNilaiData",
+      "file_type": "code",
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_game_token_rekapnilaidata",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "rekapnilaidata"
+    },
+    {
+      "label": "rekap_nilai_ujian_screen.dart",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "rekap_nilai_ujian_screen.dart"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_build",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "build"
+    },
+    {
+      "label": "_buildBody",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_buildbody",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_buildbody"
+    },
+    {
+      "label": "_buildStatCard",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_buildstatcard",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_buildstatcard"
+    },
+    {
+      "label": "createState",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_createstate",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "createstate"
+    },
+    {
+      "label": "_data",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_data",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_data"
+    },
+    {
+      "label": "_errorMessage",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_errormessage",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_errormessage"
+    },
+    {
+      "label": "_getRankBgColor",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_getrankbgcolor",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_getrankbgcolor"
+    },
+    {
+      "label": "_getRankColor",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_getrankcolor",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_getrankcolor"
+    },
+    {
+      "label": "initState",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_initstate",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "initstate"
+    },
+    {
+      "label": "_isLoading",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_isloading",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_isloading"
+    },
+    {
+      "label": "kodeToken",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_kodetoken",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "kodetoken"
+    },
+    {
+      "label": "_loadRekap",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_loadrekap",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_loadrekap"
+    },
+    {
+      "label": "RekapNilaiUjianScreen",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_rekapnilaiujianscreen",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "rekapnilaiujianscreen"
+    },
+    {
+      "label": "_RekapNilaiUjianScreenState",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_rekapnilaiujianscreenstate",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "_rekapnilaiujianscreenstate"
+    },
+    {
+      "label": "tokenId",
+      "file_type": "code",
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_guru_rekap_nilai_ujian_screen_tokenid",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "tokenid"
+    },
+    {
+      "label": "package:flutter/services.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "package_flutter_services_dart",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "package:flutter/services.dart"
+    },
+    {
+      "label": "../../services/game_token_service.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "services_game_token_service_dart",
+      "community": 71,
+      "community_name": "rekap_nilai_ujian_screen.dart",
+      "norm_label": "../../services/game_token_service.dart"
+    },
+    {
       "label": "@email",
       "file_type": "concept",
       "source_file": null,
@@ -10535,6 +10887,589 @@
       "community": 73,
       "community_name": "@sekolah",
       "norm_label": "@sekolah"
+    },
+    {
+      "label": "admin/manajemen_sekolah_screen.dart",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "admin/manajemen_sekolah_screen.dart"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_build",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "build"
+    },
+    {
+      "label": "createState",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_createstate",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "createstate"
+    },
+    {
+      "label": "dispose",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_dispose",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "dispose"
+    },
+    {
+      "label": "_errorMessage",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_errormessage",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_errormessage"
+    },
+    {
+      "label": "_handleDeleteSekolah",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_handledeletesekolah",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_handledeletesekolah"
+    },
+    {
+      "label": "initState",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_initstate",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "initstate"
+    },
+    {
+      "label": "_isLoading",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_isloading",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_isloading"
+    },
+    {
+      "label": "_loadSekolah",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_loadsekolah",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_loadsekolah"
+    },
+    {
+      "label": "_searchController",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_searchcontroller",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_searchcontroller"
+    },
+    {
+      "label": "_searchQuery",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_searchquery",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_searchquery"
+    },
+    {
+      "label": "_sekolahList",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_sekolahlist",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_sekolahlist"
+    },
+    {
+      "label": "_showSekolahFormModal",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_showsekolahformmodal",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_showsekolahformmodal"
+    },
+    {
+      "label": "_showSekolahOptions",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/manajemen_sekolah_screen.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_manajemen_sekolah_screen_showsekolahoptions",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "_showsekolahoptions"
+    },
+    {
+      "label": "../../services/admin_service.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "services_admin_service_dart",
+      "community": 74,
+      "community_name": "admin/manajemen_sekolah_screen.dart",
+      "norm_label": "../../services/admin_service.dart"
+    },
+    {
+      "label": "api_client.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "api_client_dart",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "api_client.dart"
+    },
+    {
+      "label": "../config/api_config.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "config_api_config_dart",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "../config/api_config.dart"
+    },
+    {
+      "label": "game_token_service.dart",
+      "file_type": "code",
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_game_token_service",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "game_token_service.dart"
+    },
+    {
+      "label": "createGameToken",
+      "file_type": "code",
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_game_token_service_creategametoken",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "creategametoken"
+    },
+    {
+      "label": "GameTokenService",
+      "file_type": "code",
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_game_token_service_gametokenservice",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "gametokenservice"
+    },
+    {
+      "label": "getMateri",
+      "file_type": "code",
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_game_token_service_getmateri",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "getmateri"
+    },
+    {
+      "label": "getRekapNilai",
+      "file_type": "code",
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_game_token_service_getrekapnilai",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "getrekapnilai"
+    },
+    {
+      "label": "_getToken",
+      "file_type": "code",
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_game_token_service_gettoken",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "_gettoken"
+    },
+    {
+      "label": "getTokensByKelas",
+      "file_type": "code",
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_game_token_service_gettokensbykelas",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "gettokensbykelas"
+    },
+    {
+      "label": "instance",
+      "file_type": "code",
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_game_token_service_instance",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "instance"
+    },
+    {
+      "label": "../models/game_token.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "models_game_token_dart",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "../models/game_token.dart"
+    },
+    {
+      "label": "../models/materi.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "models_materi_dart",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "../models/materi.dart"
+    },
+    {
+      "label": "static final GameTokenService",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "static_final_gametokenservice",
+      "community": 75,
+      "community_name": "game_token_service.dart",
+      "norm_label": "static final gametokenservice"
+    },
+    {
+      "label": "superadmin_home.dart",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "superadmin_home.dart"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_build",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "build"
+    },
+    {
+      "label": "createState",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_createstate",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "createstate"
+    },
+    {
+      "label": "_currentIndex",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_currentindex",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "_currentindex"
+    },
+    {
+      "label": "_filterSekolahIdForAdmin",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_filtersekolahidforadmin",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "_filtersekolahidforadmin"
+    },
+    {
+      "label": "_handleLogout",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_handlelogout",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "_handlelogout"
+    },
+    {
+      "label": "_onSelectSekolahForAdmin",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_onselectsekolahforadmin",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "_onselectsekolahforadmin"
+    },
+    {
+      "label": "routeName",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_routename",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "routename"
+    },
+    {
+      "label": "SuperAdminHome",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_superadminhome",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "superadminhome"
+    },
+    {
+      "label": "_SuperAdminHomeState",
+      "file_type": "code",
+      "source_file": "lib/screens/superadmin/superadmin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_superadmin_superadmin_home_superadminhomestate",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "_superadminhomestate"
+    },
+    {
+      "label": "manajemen_admin_sekolah_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "manajemen_admin_sekolah_screen_dart",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "manajemen_admin_sekolah_screen.dart"
+    },
+    {
+      "label": "manajemen_sekolah_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "manajemen_sekolah_screen_dart",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "manajemen_sekolah_screen.dart"
+    },
+    {
+      "label": "../models/sekolah.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "models_sekolah_dart",
+      "community": 76,
+      "community_name": "superadmin_home.dart",
+      "norm_label": "../models/sekolah.dart"
+    },
+    {
+      "label": "admin_home.dart",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_admin_home",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "admin_home.dart"
+    },
+    {
+      "label": "AdminHome",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_admin_home_adminhome",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "adminhome"
+    },
+    {
+      "label": "_AdminHomeState",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_admin_home_adminhomestate",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "_adminhomestate"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_admin_home_build",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "build"
+    },
+    {
+      "label": "createState",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_admin_home_createstate",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "createstate"
+    },
+    {
+      "label": "_currentIndex",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_admin_home_currentindex",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "_currentindex"
+    },
+    {
+      "label": "routeName",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_admin_home_routename",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "routename"
+    },
+    {
+      "label": "_screens",
+      "file_type": "code",
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_admin_admin_home_screens",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "_screens"
+    },
+    {
+      "label": "List",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "list",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "list"
+    },
+    {
+      "label": "manajemen_guru_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "manajemen_guru_screen_dart",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "manajemen_guru_screen.dart"
+    },
+    {
+      "label": "manajemen_kelas_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "manajemen_kelas_screen_dart",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "manajemen_kelas_screen.dart"
+    },
+    {
+      "label": "profil_admin_screen.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "profil_admin_screen_dart",
+      "community": 79,
+      "community_name": "List",
+      "norm_label": "profil_admin_screen.dart"
     },
     {
       "label": "DateTime?",
@@ -10636,17 +11571,6 @@
       "norm_label": "dispose"
     },
     {
-      "label": "_fetchMateri",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_buat_token_ujian_screen_fetchmateri",
-      "community": 8,
-      "community_name": "buat_token_ujian_screen.dart",
-      "norm_label": "_fetchmateri"
-    },
-    {
       "label": "_formatDateTime",
       "file_type": "code",
       "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
@@ -10702,17 +11626,6 @@
       "norm_label": "_isacak"
     },
     {
-      "label": "_isLoadingMateri",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_buat_token_ujian_screen_isloadingmateri",
-      "community": 8,
-      "community_name": "buat_token_ujian_screen.dart",
-      "norm_label": "_isloadingmateri"
-    },
-    {
       "label": "_isOffline",
       "file_type": "code",
       "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
@@ -10755,28 +11668,6 @@
       "community": 8,
       "community_name": "buat_token_ujian_screen.dart",
       "norm_label": "_kelasid"
-    },
-    {
-      "label": "_materiErrorMessage",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_buat_token_ujian_screen_materierrormessage",
-      "community": 8,
-      "community_name": "buat_token_ujian_screen.dart",
-      "norm_label": "_materierrormessage"
-    },
-    {
-      "label": "_materiList",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_buat_token_ujian_screen_materilist",
-      "community": 8,
-      "community_name": "buat_token_ujian_screen.dart",
-      "norm_label": "_materilist"
     },
     {
       "label": "_namaKelas",
@@ -10854,39 +11745,6 @@
       "community": 8,
       "community_name": "buat_token_ujian_screen.dart",
       "norm_label": "_tingkat"
-    },
-    {
-      "label": "_toggleSelectAllMateri",
-      "file_type": "code",
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_guru_buat_token_ujian_screen_toggleselectallmateri",
-      "community": 8,
-      "community_name": "buat_token_ujian_screen.dart",
-      "norm_label": "_toggleselectallmateri"
-    },
-    {
-      "label": "package:flutter/services.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "package_flutter_services_dart",
-      "community": 8,
-      "community_name": "buat_token_ujian_screen.dart",
-      "norm_label": "package:flutter/services.dart"
-    },
-    {
-      "label": "../../services/game_token_service.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "services_game_token_service_dart",
-      "community": 8,
-      "community_name": "buat_token_ujian_screen.dart",
-      "norm_label": "../../services/game_token_service.dart"
     },
     {
       "label": "int?",
@@ -12897,6 +13755,18 @@
       "relation": "navigates",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "route_object",
+      "_origin": "ast",
+      "source": "lib_screens_guru_detail_kelas_screen_openbuattoken",
+      "target": "materialpageroute"
+    },
+    {
+      "relation": "navigates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/screens/guru/guru_dashboard_screen.dart",
       "source_location": null,
       "weight": 1.0,
@@ -13036,6 +13906,18 @@
       "_origin": "ast",
       "source": "lib_services_auth_service",
       "target": "lib_models_auth_user_authdata"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "type_lookup",
+      "_origin": "ast",
+      "source": "lib_services_game_token_service",
+      "target": "lib_models_game_token_rekapnilaidata"
     },
     {
       "relation": "references",
@@ -13233,6 +14115,54 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "int"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "variable_type",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_paketujianinfo"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "variable_type",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_statistikrekap"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "list"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/models/guru.dart",
       "source_location": null,
       "weight": 1.0,
@@ -13407,6 +14337,18 @@
       "context": "variable_type",
       "_origin": "ast",
       "source": "lib_screens_admin_admin_home",
+      "target": "list"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home",
       "target": "static_const"
     },
     {
@@ -13419,6 +14361,18 @@
       "context": "variable_type",
       "_origin": "ast",
       "source": "lib_screens_admin_manajemen_guru_screen",
+      "target": "list"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
       "target": "list"
     },
     {
@@ -13648,6 +14602,18 @@
       "_origin": "ast",
       "source": "lib_screens_guru_kelas_saya_screen",
       "target": "list"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_models_game_token_rekapnilaidata"
     },
     {
       "relation": "references",
@@ -15589,6 +16555,28 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_config_api_config",
+      "target": "lib_config_api_config_gametokennilaiuri"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/config/api_config.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_config_api_config",
+      "target": "lib_config_api_config_gametokensbykelasuri"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/config/api_config.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_config_api_config",
       "target": "lib_config_api_config_gametokenuri"
     },
     {
@@ -16536,6 +17524,358 @@
       "_origin": "ast",
       "source": "lib_models_auth_user",
       "target": "lib_models_auth_user_user"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_acak"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_aktif"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_belumtuntas"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_createdat"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_dimainkanat"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_fromjson"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_gametokenitem"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_id"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_izinkanoffline"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_jumlahsoal"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_kelasid"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_kkm"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_kodetoken"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_namapemain"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_namasesi"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_nilai"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_nilaisiswaitem"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_nilaiterendah"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_nilaitertinggi"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_nis"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_paket"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_peringkat"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_rekap"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_rekapnilaidata"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_reratanilai"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_semester"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_tingkatkelas"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_tojson"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_totalbenar"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_totalpemain"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_totalsalah"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/game_token.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_game_token",
+      "target": "lib_models_game_token_tuntas"
     },
     {
       "relation": "defines",
@@ -17822,6 +19162,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_admin_admin_home",
+      "target": "lib_screens_admin_admin_home_adminhomestate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home",
       "target": "lib_screens_admin_admin_home_build"
     },
     {
@@ -17833,7 +19184,40 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_admin_admin_home",
+      "target": "lib_screens_admin_admin_home_createstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home",
+      "target": "lib_screens_admin_admin_home_currentindex"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home",
       "target": "lib_screens_admin_admin_home_routename"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home",
+      "target": "lib_screens_admin_admin_home_screens"
     },
     {
       "relation": "defines",
@@ -18109,6 +19493,193 @@
       "_origin": "ast",
       "source": "lib_screens_admin_manajemen_guru_screen",
       "target": "lib_screens_admin_manajemen_guru_screen_totalcount"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_createstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_errormessage"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_gurulist"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_handledeletekelas"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_handlelogout"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_isloading"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_kelaslist"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_loaddata"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_manajemenkelasscreen"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_manajemenkelasscreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_searchcontroller"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_searchquery"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_showkelasdetailmodal"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "lib_screens_admin_manajemen_kelas_screen_showkelasformmodal"
     },
     {
       "relation": "defines",
@@ -18955,17 +20526,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_guru_buat_token_ujian_screen",
-      "target": "lib_screens_guru_buat_token_ujian_screen_fetchmateri"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_screens_guru_buat_token_ujian_screen",
       "target": "lib_screens_guru_buat_token_ujian_screen_formatdatetime"
     },
     {
@@ -19021,17 +20581,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_guru_buat_token_ujian_screen",
-      "target": "lib_screens_guru_buat_token_ujian_screen_isloadingmateri"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_screens_guru_buat_token_ujian_screen",
       "target": "lib_screens_guru_buat_token_ujian_screen_isoffline"
     },
     {
@@ -19066,28 +20615,6 @@
       "_origin": "ast",
       "source": "lib_screens_guru_buat_token_ujian_screen",
       "target": "lib_screens_guru_buat_token_ujian_screen_kelasid"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_screens_guru_buat_token_ujian_screen",
-      "target": "lib_screens_guru_buat_token_ujian_screen_materierrormessage"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_screens_guru_buat_token_ujian_screen",
-      "target": "lib_screens_guru_buat_token_ujian_screen_materilist"
     },
     {
       "relation": "defines",
@@ -19165,17 +20692,6 @@
       "_origin": "ast",
       "source": "lib_screens_guru_buat_token_ujian_screen",
       "target": "lib_screens_guru_buat_token_ujian_screen_tingkat"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/guru/buat_token_ujian_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_screens_guru_buat_token_ujian_screen",
-      "target": "lib_screens_guru_buat_token_ujian_screen_toggleselectallmateri"
     },
     {
       "relation": "defines",
@@ -19307,6 +20823,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_guru_detail_kelas_screen",
+      "target": "lib_screens_guru_detail_kelas_screen_buildtokeninfochip"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_detail_kelas_screen",
       "target": "lib_screens_guru_detail_kelas_screen_createstate"
     },
     {
@@ -19417,6 +20944,28 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_guru_detail_kelas_screen",
+      "target": "lib_screens_guru_detail_kelas_screen_openbuattoken"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_detail_kelas_screen",
+      "target": "lib_screens_guru_detail_kelas_screen_selectedtabindex"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_detail_kelas_screen",
       "target": "lib_screens_guru_detail_kelas_screen_showsiswaformmodal"
     },
     {
@@ -19440,6 +20989,17 @@
       "_origin": "ast",
       "source": "lib_screens_guru_detail_kelas_screen",
       "target": "lib_screens_guru_detail_kelas_screen_siswalist"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_detail_kelas_screen",
+      "target": "lib_screens_guru_detail_kelas_screen_tokenlist"
     },
     {
       "relation": "defines",
@@ -19703,17 +21263,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_guru_kelas_saya_screen",
-      "target": "lib_screens_guru_kelas_saya_screen_handledeletekelas"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_screens_guru_kelas_saya_screen",
       "target": "lib_screens_guru_kelas_saya_screen_handlerefresh"
     },
     {
@@ -19775,28 +21324,6 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_screens_guru_kelas_saya_screen",
-      "target": "lib_screens_guru_kelas_saya_screen_showkelasformmodal"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/guru/kelas_saya_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_screens_guru_kelas_saya_screen",
-      "target": "lib_screens_guru_kelas_saya_screen_showkelasoptions"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "lib/screens/guru/profil_guru_screen.dart",
       "source_location": null,
       "weight": 1.0,
@@ -19836,6 +21363,171 @@
       "_origin": "ast",
       "source": "lib_screens_guru_profil_guru_screen",
       "target": "lib_screens_guru_profil_guru_screen_profilguruscreen"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_buildbody"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_buildstatcard"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_createstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_data"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_errormessage"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_getrankbgcolor"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_getrankcolor"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_initstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_isloading"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_kodetoken"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_loadrekap"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_rekapnilaiujianscreen"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_rekapnilaiujianscreenstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_tokenid"
     },
     {
       "relation": "defines",
@@ -21034,7 +22726,29 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_services_game_token_service",
+      "target": "lib_services_game_token_service_getrekapnilai"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_services_game_token_service",
       "target": "lib_services_game_token_service_gettoken"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_services_game_token_service",
+      "target": "lib_services_game_token_service_gettokensbykelas"
     },
     {
       "relation": "defines",
@@ -22101,6 +23815,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_models_models",
+      "target": "game_token_dart"
+    },
+    {
+      "relation": "exports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/models.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_models_models",
       "target": "guru_dart"
     },
     {
@@ -22530,7 +24255,40 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_admin_admin_home",
+      "target": "manajemen_kelas_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home",
       "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home",
+      "target": "profil_admin_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home",
+      "target": "theme_dart"
     },
     {
       "relation": "imports",
@@ -22542,6 +24300,17 @@
       "_origin": "ast",
       "source": "lib_screens_admin_manajemen_guru_screen",
       "target": "auth_login_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_guru_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_guru_screen",
+      "target": "data_dummy_data_dart"
     },
     {
       "relation": "imports",
@@ -22607,6 +24376,127 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_admin_manajemen_guru_screen",
+      "target": "widgets_widgets_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "auth_login_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "data_dummy_data_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "models_auth_user_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "models_guru_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "models_kelas_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "services_admin_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "services_auth_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "services_kelas_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
+      "target": "theme_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen",
       "target": "widgets_widgets_dart"
     },
     {
@@ -23157,6 +25047,39 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_guru_detail_kelas_screen",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_detail_kelas_screen",
+      "target": "rekap_nilai_ujian_screen_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_detail_kelas_screen",
+      "target": "services_game_token_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/detail_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_detail_kelas_screen",
       "target": "services_kelas_service_dart"
     },
     {
@@ -23476,6 +25399,72 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_guru_profil_guru_screen",
+      "target": "widgets_widgets_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "models_models_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "services_game_token_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
+      "target": "theme_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen",
       "target": "widgets_widgets_dart"
     },
     {
@@ -24235,6 +26224,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_services_game_token_service",
+      "target": "models_game_token_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/game_token_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_services_game_token_service",
       "target": "models_materi_dart"
     },
     {
@@ -24939,7 +26939,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_admin_admin_home_adminhome",
-      "target": "statelesswidget"
+      "target": "statefulwidget"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home_adminhomestate",
+      "target": "state"
     },
     {
       "relation": "inherits",
@@ -24961,6 +26972,28 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_admin_manajemen_guru_screen_manajemenguruscreenstate",
+      "target": "state"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen_manajemenkelasscreen",
+      "target": "statefulwidget"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen_manajemenkelasscreenstate",
       "target": "state"
     },
     {
@@ -25237,6 +27270,28 @@
       "_origin": "ast",
       "source": "lib_screens_guru_profil_guru_screen_profilguruscreen",
       "target": "statelesswidget"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen_rekapnilaiujianscreen",
+      "target": "statefulwidget"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen_rekapnilaiujianscreenstate",
+      "target": "state"
     },
     {
       "relation": "inherits",
@@ -25561,12 +27616,34 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/admin_home.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_admin_home_adminhomestate",
+      "target": "lib_screens_admin_admin_home_adminhome"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/screens/admin/manajemen_guru_screen.dart",
       "source_location": null,
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_screens_admin_manajemen_guru_screen_manajemenguruscreenstate",
       "target": "lib_screens_admin_manajemen_guru_screen_manajemenguruscreen"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/admin/manajemen_kelas_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_admin_manajemen_kelas_screen_manajemenkelasscreenstate",
+      "target": "lib_screens_admin_manajemen_kelas_screen_manajemenkelasscreen"
     },
     {
       "relation": "references",
@@ -25688,6 +27765,17 @@
       "_origin": "ast",
       "source": "lib_screens_guru_kelas_saya_screen_kelassayascreenstate",
       "target": "lib_screens_guru_kelas_saya_screen_kelassayascreen"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/guru/rekap_nilai_ujian_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_screens_guru_rekap_nilai_ujian_screen_rekapnilaiujianscreenstate",
+      "target": "lib_screens_guru_rekap_nilai_ujian_screen_rekapnilaiujianscreen"
     },
     {
       "relation": "references",
@@ -25940,5 +28028,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "157fa8dedee61423413ffd1ff37fc411074c391a"
+  "built_at_commit": "ece4ec6e0854abec2882fb07d990b4983907c3cd"
 }
