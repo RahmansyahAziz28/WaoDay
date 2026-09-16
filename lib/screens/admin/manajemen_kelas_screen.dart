@@ -917,17 +917,6 @@ class _ManajemenKelasScreenState extends State<ManajemenKelasScreen> {
                                     size: 16,
                                     color: AppColors.textSecondary,
                                   ),
-                                  const SizedBox(width: 6),
-                                  Text(
-                                    k.jumlahSiswa > 0
-                                        ? '${k.jumlahSiswa} siswa terdaftar'
-                                        : 'Belum ada siswa',
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: AppColors.textSecondary,
-                                    ),
-                                  ),
-                                  const Spacer(),
                                   const Text(
                                     'Detail',
                                     style: TextStyle(

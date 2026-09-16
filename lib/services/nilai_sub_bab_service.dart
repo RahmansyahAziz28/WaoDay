@@ -183,14 +183,6 @@ class NilaiSubBabService {
       }
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
-        Directory dir;
-        try {
-          // Attempt getting download or application documents directory
-          dir = await getApplicationDocumentsDirectory();
-        } catch (_) {
-          dir = await getTemporaryDirectory();
-        }
-
         final cleanName = fileName != null && fileName.trim().isNotEmpty
             ? fileName.trim()
             : 'Rekap_Nilai_Token_${tokenId.substring(0, tokenId.length > 8 ? 8 : tokenId.length)}.xlsx';
@@ -198,15 +190,69 @@ class NilaiSubBabService {
         // Ensure proper .xlsx extension
         final finalFileName =
             cleanName.endsWith('.xlsx') ? cleanName : '$cleanName.xlsx';
-        final filePath = '${dir.path}/$finalFileName';
-        final file = File(filePath);
 
-        await file.writeAsBytes(response.bodyBytes, flush: true);
+        File? savedFile;
+
+        // 1. Prioritas Utama di Android: Folder Download publik (/storage/emulated/0/Download)
+        if (Platform.isAndroid) {
+          try {
+            final publicDownloadDir = Directory('/storage/emulated/0/Download');
+            if (!publicDownloadDir.existsSync()) {
+              publicDownloadDir.createSync(recursive: true);
+            }
+            final targetFile = File('${publicDownloadDir.path}/$finalFileName');
+            await targetFile.writeAsBytes(response.bodyBytes, flush: true);
+            savedFile = targetFile;
+          } catch (e) {
+            debugPrint('Gagal simpan ke /storage/emulated/0/Download: $e');
+          }
+
+          // 2. Jika gagal, coba via getExternalStorageDirectories(type: StorageDirectory.downloads)
+          if (savedFile == null) {
+            try {
+              final extDirs = await getExternalStorageDirectories(
+                type: StorageDirectory.downloads,
+              );
+              if (extDirs != null && extDirs.isNotEmpty) {
+                final targetFile = File('${extDirs.first.path}/$finalFileName');
+                await targetFile.writeAsBytes(response.bodyBytes, flush: true);
+                savedFile = targetFile;
+              }
+            } catch (e) {
+              debugPrint('Gagal simpan ke external download directory: $e');
+            }
+          }
+        } else {
+          // iOS / Desktop: gunakan getDownloadsDirectory
+          try {
+            final downloadDir = await getDownloadsDirectory();
+            if (downloadDir != null) {
+              final targetFile = File('${downloadDir.path}/$finalFileName');
+              await targetFile.writeAsBytes(response.bodyBytes, flush: true);
+              savedFile = targetFile;
+            }
+          } catch (e) {
+            debugPrint('Gagal simpan ke getDownloadsDirectory: $e');
+          }
+        }
+
+        // 3. Fallback jika semua direktori download tidak bisa diakses
+        if (savedFile == null) {
+          Directory fallbackDir;
+          try {
+            fallbackDir = await getApplicationDocumentsDirectory();
+          } catch (_) {
+            fallbackDir = await getTemporaryDirectory();
+          }
+          final fallbackFile = File('${fallbackDir.path}/$finalFileName');
+          await fallbackFile.writeAsBytes(response.bodyBytes, flush: true);
+          savedFile = fallbackFile;
+        }
 
         return ApiResponse<File>(
           success: true,
-          message: 'File Excel berhasil diunduh',
-          data: file,
+          message: 'File Excel berhasil disimpan di folder Download',
+          data: savedFile,
         );
       } else {
         // Try parsing error message from JSON response body if available

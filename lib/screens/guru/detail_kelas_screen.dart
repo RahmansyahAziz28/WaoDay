@@ -263,7 +263,7 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'File Excel disimpan: ${file.path.split(Platform.pathSeparator).last}',
+            'Disimpan di folder Download:\n${file.path.split(Platform.pathSeparator).last}',
           ),
           backgroundColor: AppColors.success,
           action: SnackBarAction(
@@ -1032,11 +1032,6 @@ class _DetailKelasScreenState extends State<DetailKelasScreen> {
                               _buildTokenInfoChip(
                                 icon: Icons.quiz_outlined,
                                 label: '${token.jumlahSoal} Soal',
-                              ),
-                              _buildTokenInfoChip(
-                                icon: Icons.group_outlined,
-                                label: '${token.totalPemain} Siswa Selesai',
-                                isHighlight: token.totalPemain > 0,
                               ),
                             ],
                           ),

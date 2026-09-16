@@ -96,7 +96,7 @@ class _RekapNilaiUjianScreenState extends State<RekapNilaiUjianScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'File Excel disimpan: ${file.path.split(Platform.pathSeparator).last}',
+              'Disimpan di folder Download:\n${file.path.split(Platform.pathSeparator).last}',
             ),
             backgroundColor: AppColors.success,
             action: SnackBarAction(
@@ -402,15 +402,6 @@ class _RekapNilaiUjianScreenState extends State<RekapNilaiUjianScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      '${rekap.totalPemain} Siswa Selesai',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
                     const Spacer(),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
@@ -552,7 +543,7 @@ class _RekapNilaiUjianScreenState extends State<RekapNilaiUjianScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
-              'Daftar Peringkat Siswa',
+              'Daftar Siswa',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,

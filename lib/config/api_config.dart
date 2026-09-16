@@ -1,7 +1,6 @@
 class ApiConfig {
   ApiConfig._();
 
-  // Ganti ke IP Wi-Fi laptop agar HP fisik tidak putus koneksi saat kabel/adb terlepas
   static const String baseUrl = 'https://www.baseproject.my.id';
 
   static const String loginEndpoint = '/api/auth/login';
